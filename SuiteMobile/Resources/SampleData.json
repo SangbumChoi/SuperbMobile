@@ -1,0 +1,54 @@
+[
+    {
+        "id":1001,
+        "name": "moon-video-siesta-cetegory-test",
+        "overview": {
+            "inprogress_rejected" : 0,
+            "inprogress_notsubmitted" : 1,
+            "submitted_approved" : 0,
+            "submitted_pendingreview" : 2,
+            "skipped_approved" : 0,
+            "skipped_pendingreview" : 1,
+            "memberroles_admin" : 34,
+            "memberroles_manager" : 0,
+            "memberroles_reviewer" : 0,
+            "memberroles_labeler" : 0,
+        },
+        "datatype": "video"
+    },
+    {
+        "id":1002,
+        "name": "sdk-test-jk",
+        "overview": {
+            "inprogress_rejected" : 0,
+            "inprogress_notsubmitted" : 3,
+            "submitted_approved" : 0,
+            "submitted_pendingreview" : 0,
+            "skipped_approved" : 0,
+            "skipped_pendingreview" : 0,
+            "memberroles_admin" : 34,
+            "memberroles_manager" : 0,
+            "memberroles_reviewer" : 0,
+            "memberroles_labeler" : 0,
+        },
+        "datatype": "image"
+    },
+    {
+        "id":1003,
+        "name": "[mock] 4D",
+        "overview": {
+            "inprogress_rejected" : 0,
+            "inprogress_notsubmitted" : 89,
+            "submitted_approved" : 0,
+            "submitted_pendingreview" : 9,
+            "skipped_approved" : 0,
+            "skipped_pendingreview" : 0,
+            "memberroles_admin" : 34,
+            "memberroles_manager" : 0,
+            "memberroles_reviewer" : 1,
+            "memberroles_labeler" : 1,
+        },
+        "datatype": "pointcloud"
+    },
+]
+
