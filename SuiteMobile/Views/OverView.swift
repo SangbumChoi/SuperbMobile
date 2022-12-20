@@ -2,7 +2,7 @@ import SwiftUI
 
 struct OverView: View {
     
-    let overview: DataList
+    let labelingstatus: LabelingStatusDataList
     let member: ProjectMemberList
     
 //    @ObservedObject var projectOverviewResponse = ProjectOverviewResponse()
@@ -26,16 +26,16 @@ struct OverView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .foregroundColor(.yellow)
                                 .frame(
-                                    width: metrics.size.width * CGFloat(overview.inprogress_notsubmitted) / CGFloat(overview.inprogress_rejected + overview.inprogress_notsubmitted),
+                                    width: metrics.size.width * CGFloat(labelingstatus.inprogress_notsubmitted) / CGFloat(labelingstatus.inprogress_rejected + labelingstatus.inprogress_notsubmitted),
                                     height: metrics.size.height * 0.2)
                         }
 
                     }.frame(height: 20)
                     Text("Recjected")
-                    Text("\(overview.inprogress_rejected)")
+                    Text("\(labelingstatus.inprogress_rejected)")
                     Divider()
                     Text("Not Submitted")
-                    Text("\(overview.inprogress_notsubmitted)")
+                    Text("\(labelingstatus.inprogress_notsubmitted)")
                 }
                 VStack {
                     HStack {
@@ -52,16 +52,16 @@ struct OverView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .foregroundColor(.green)
                                 .frame(
-                                    width: metrics.size.width * CGFloat(overview.submitted_approved) / CGFloat(overview.submitted_approved + overview.submitted_pendingreview),
+                                    width: metrics.size.width * CGFloat(labelingstatus.submitted_approved) / CGFloat(labelingstatus.submitted_approved + labelingstatus.submitted_pendingreview),
                                     height: metrics.size.height * 0.2)
                         }
 
                     }.frame(height: 20)
                     Text("Approved")
-                    Text("\(overview.submitted_approved)")
+                    Text("\(labelingstatus.submitted_approved)")
                     Divider()
                     Text("Pending Review")
-                    Text("\(overview.submitted_pendingreview)")
+                    Text("\(labelingstatus.submitted_pendingreview)")
                 }
                 VStack {
                     HStack {
@@ -78,16 +78,16 @@ struct OverView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .foregroundColor(.gray)
                                 .frame(
-                                    width: metrics.size.width * CGFloat(overview.skipped_approved) / CGFloat(overview.skipped_approved + overview.skipped_pendingreview),
+                                    width: metrics.size.width * CGFloat(labelingstatus.skipped_approved) / CGFloat(labelingstatus.skipped_approved + labelingstatus.skipped_pendingreview),
                                     height: metrics.size.height * 0.2)
                         }
 
                     }.frame(height: 20)
                     Text("Approved")
-                    Text("\(overview.skipped_approved)")
+                    Text("\(labelingstatus.skipped_approved)")
                     Divider()
                     Text("Pending Review")
-                    Text("\(overview.skipped_pendingreview)")
+                    Text("\(labelingstatus.skipped_pendingreview)")
                 }
             }
         }

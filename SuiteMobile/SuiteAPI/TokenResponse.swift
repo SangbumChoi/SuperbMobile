@@ -57,7 +57,7 @@ class Webservice {
     
     func login(tenant_id: String, email: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
         
-        guard let url = URL(string: "https://suite-api.superb-ai.com/auth/login") else {
+        guard let url = URL(string: "https://suite-api.dev.superb-ai.com/auth/login") else {
             completion(.failure(.custom(errorMessage: "URL is not correct")))
             return
         }

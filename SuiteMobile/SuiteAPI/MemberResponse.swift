@@ -20,7 +20,7 @@ class AllMemberResponse: ObservableObject {
     }
     
     func fetchAllMember(){
-        let baseUrl = "https://suite-api.superb-ai.com/users/"
+        let baseUrl = "https://suite-api.dev.superb-ai.com/users/"
         let token = UserDefaults.standard.string(forKey: "jsonwebtoken")
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",

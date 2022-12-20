@@ -21,7 +21,7 @@ struct LoginView: View {
                 TextField("Tenant_id", text: self.$tokenResponse.tenant_id)
                 TextField("Email", text: self.$tokenResponse.email)
                 SecureField("Password", text: self.$tokenResponse.password)
-
+                
                 HStack {
                     Spacer()
                     NavigationLink(destination: MainView(mains: ProjectList.sampleData, title: tokenResponse.tenant_id), isActive: $tokenResponse.isAuthenticated) {
@@ -34,16 +34,8 @@ struct LoginView: View {
                     Spacer()
                 }
             }.buttonStyle(PlainButtonStyle())
-            
-        }.onAppear(perform: {
-            
-        })
+        }
+        .onAppear(perform: {})
         .embedInNavigationView()
-    }
-}
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
     }
 }

@@ -9,9 +9,10 @@ struct ProjectView: View {
     let main: ProjectList
     
     @ObservedObject private var projectListsResponse = ProjectListsResponse()
-    @ObservedObject private var projectOverviewResponse = ProjectOverviewResponse()
+    @ObservedObject private var projectLabelingStatusResponse = ProjectLabelingStatusResponse()
     @ObservedObject private var projectMemberResponse = ProjectMemberResponse()
-    
+    @ObservedObject private var projectIssueResponse = ProjectIssueResponse()
+
     @State var searchText = ""
     @State var isActive = false
     
@@ -27,13 +28,15 @@ struct ProjectView: View {
         List(projectListsResponse.projectLists.filter({($0.name?.contains(searchText))! || searchText.isEmpty}), id: \.id) { sample in
             Button {
                 isActive = true
+                projectLabelingStatusResponse.fetchProjectOverview(id: sample.id!)
                 projectMemberResponse.fetchProjectMember(id: sample.id!)
-                projectOverviewResponse.fetchProjectOverview(id: sample.id!)
+                projectIssueResponse.fetchIssue(project_id: sample.id!)
             } label : {
                 ProjectRow(project: sample)
             }.background(
             NavigationLink(destination: ProjectDetail(project: sample,
-                                                      overview: projectOverviewResponse.projectOverview2,
+                                                      labelingstatus: projectLabelingStatusResponse.processedLabelingStatus,
+                                                      issue: projectIssueResponse.projectIssue,
                                                       member: projectMemberResponse.projectMember),
                            isActive: $isActive) {
                 EmptyView()
@@ -48,52 +51,53 @@ struct ProjectView: View {
 struct ProjectDetail: View {
     
     var project: ProjectResult
-    var overview: DataList
+    var labelingstatus: LabelingStatusDataList
+    var issue: [IssueResult]
     var member: ProjectMemberList
 
     var body: some View {
         List {
             OverView(
-                overview: overview,
+                labelingstatus: labelingstatus,
                 member: member
             )
             
-            Section(header: LabelRow(name: "Labeling", imagename: "list.star")) {
-                NavigationLink(destination: LabelsView()) {
-                    Text("Labels")
+            Section(header: LabelRow(name: "Issues", imagename: "list.star")) {
+                NavigationLink(destination: IssueView(issue: issue)) {
+                    Text("Issues")
                 }
             }
             
-            Section(header: LabelRow(name: "Auto-Label", imagename: "wand.and.stars")) {
-                NavigationLink(destination: LabelsView()) {
-                    Text("Auto-Label Settings")
-                }
-                NavigationLink(destination: LabelsView()) {
-                    Text("Custom Auto-Label")
-                }
-            }
-            
-            Section(header: Label("Export", systemImage: "square.and.arrow.down")) {
-                HStack{
-                    Label("Export function is not supported in iOS", systemImage: "xmark.seal")
-                }
-            }
+//            Section(header: LabelRow(name: "Auto-Label", imagename: "wand.and.stars")) {
+//                NavigationLink(destination: LabelsView()) {
+//                    Text("Auto-Label Settings")
+//                }
+//                NavigationLink(destination: LabelsView()) {
+//                    Text("Custom Auto-Label")
+//                }
+//            }
+//
+//            Section(header: Label("Export", systemImage: "square.and.arrow.down")) {
+//                HStack{
+//                    Label("Export function is not supported in iOS", systemImage: "xmark.seal")
+//                }
+//            }
             
             Section(header: LabelRow(name: "Analytics", imagename: "chart.line.uptrend.xyaxis")){
-                NavigationLink(destination: LabelsView()) {
+                NavigationLink(destination: IssueView(issue: issue)) {
                     Text("Project Analytics")
                 }
-                NavigationLink(destination: LabelsView()) {
+                NavigationLink(destination: IssueView(issue: issue)) {
                     Text("User Reports")
                 }
                 Label("QA is not currently supported", systemImage: "xmark.seal")
             }
             
             Section(header: LabelRow(name: "ETC", imagename: "wrench.and.screwdriver")) {
-                NavigationLink(destination: LabelsView()) {
+                NavigationLink(destination: IssueView(issue: issue)) {
                     Text("Project Members")
                 }
-                NavigationLink(destination: LabelsView()) {
+                NavigationLink(destination: IssueView(issue: issue)) {
                     Text("Settings")
                 }
             }
@@ -116,10 +120,10 @@ struct ProjectRow: View {
                     .foregroundColor(Color.orange)
                 VStack(alignment: .leading) {
                     Text(project.name!)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.black)
                         .fontWeight(.bold)
                     Text("\(project.label_count!) labels")
-                        .foregroundColor(Color.white.opacity(0.5))
+                        .foregroundColor(Color.black.opacity(0.5))
                 }
                 Spacer()
             }

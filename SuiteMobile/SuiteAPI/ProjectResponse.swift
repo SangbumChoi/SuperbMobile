@@ -12,8 +12,7 @@ import Alamofire
 class ProjectListsResponse: ObservableObject {
     @Published var projectLists = [ProjectResult]()
 
-    var subscription = Set<AnyCancellable>()
-    var baseUrl = "https://suite-api.superb-ai.com/projects/?page_size=1000&page=1"
+    var baseUrl = "https://suite-api.dev.superb-ai.com/projects/?page_size=100&page=1"
     
     init() {
         fetchProjectLists()
@@ -28,13 +27,10 @@ class ProjectListsResponse: ObservableObject {
             "Content-Type": "application/json",
             "Authorization": "Bearer \(token)"
         ]
-        
-        print(headers)
-        
+                
         AF.request(baseUrl, headers: headers)
             .response { (responseData) in
                 guard let data = responseData.data else {return}
-                print(data)
                 do {
                     let parseData = try JSONDecoder().decode(Project.self, from: data)
                     print(parseData)
@@ -47,22 +43,14 @@ class ProjectListsResponse: ObservableObject {
     
 }
 
-class ProjectOverviewResponse: ObservableObject {
-    
-    @Published var projectOverview = [OverviewResult]()
-    @Published var projectOverview2 = DataList()
-
-    var subscription = Set<AnyCancellable>()
-//    var baseUrl = "https://suite-api.superb-ai.com/v2/projects/538c6147-68dc-4bc7-b0ea-2af76c5ccc82/overview/"
-    
-//    init(name: String) {
-//        fetchProjectOverview(name: "38c6147-68dc-4bc7-b0ea-2af76c5ccc82")
-//    }
+class ProjectLabelingStatusResponse: ObservableObject {
+    @Published var projectLabelingStatus = [LabelingStatusResult]()
+    @Published var processedLabelingStatus = LabelingStatusDataList()
     
     func fetchProjectOverview(id: String){
         
-        let baseUrl = "https://suite-api.superb-ai.com/v2/projects/\(id)/overview/"
-        
+        let baseUrl = "https://suite-api.dev.superb-ai.com/v2/projects/\(id)/overview/"
+        print(baseUrl)
         let token = UserDefaults.standard.string(forKey: "jsonwebtoken")
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
@@ -73,20 +61,19 @@ class ProjectOverviewResponse: ObservableObject {
             .response { (responseData) in
                 guard let data = responseData.data else {return}
                 do {
-                    let parseData = try JSONDecoder().decode(Overview.self, from: data)
-                    self.projectOverview = parseData.results
-                    self.processProjectOverview()
-                    print(self.projectOverview)
+                    let parseData = try JSONDecoder().decode(LabelingStatus.self, from: data)
+                    self.projectLabelingStatus = parseData.results
+                    self.processLabelingStatus()
                 } catch {
-                    print("Overview")
+                    print("LabelingStatus")
                 }
             }
     }
     
-    func processProjectOverview(){
-        var overviewDataList = DataList()
+    func processLabelingStatus(){
+        var overviewDataList = LabelingStatusDataList()
         
-        for overview in self.projectOverview{
+        for overview in self.projectLabelingStatus{
             if overview.status == "WORKING" && overview.last_review_action == "REJECT" {
                 overviewDataList.inprogress_rejected = overview.count!
             }
@@ -106,19 +93,17 @@ class ProjectOverviewResponse: ObservableObject {
                 overviewDataList.skipped_pendingreview = overview.count!
             }
         }
-        self.projectOverview2 = overviewDataList
+        self.processedLabelingStatus = overviewDataList
     }
 }
 
 class ProjectMemberResponse: ObservableObject {
-    
-//    @Published var projectMember = [Member]()
     @Published var projectMember = ProjectMemberList()
 
     var subscription = Set<AnyCancellable>()
     
     func fetchProjectMember(id: String){
-        let baseUrl = "https://suite-api.superb-ai.com/v2/projects/\(id)/users/"
+        let baseUrl = "https://suite-api.dev.superb-ai.com/v2/projects/\(id)/users/"
 
         let token = UserDefaults.standard.string(forKey: "jsonwebtoken")
         let headers: HTTPHeaders = [
@@ -154,5 +139,33 @@ class ProjectMemberResponse: ObservableObject {
             }
         }
         self.projectMember = projectMemberList
+    }
+}
+
+class ProjectIssueResponse : ObservableObject {
+    @Published var projectIssue = [IssueResult]()
+
+    func fetchIssue(project_id: String) {
+        
+        let baseUrl = "https://suite-api.dev.superb-ai.com/projects/\(project_id)/labels/?group_ordering=-additional_label_type&contains_issue=true"
+        let token = UserDefaults.standard.string(forKey: "jsonwebtoken")
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token!
+        ]
+        
+        AF.request(baseUrl, headers: headers)
+            .response { (responseData) in
+                guard let data = responseData.data else {return}
+                do {
+                    let parseData = try JSONDecoder().decode(Issue.self, from: data)
+                    print("issue", parseData)
+                    self.projectIssue = parseData.results
+//                    self.processProjectOverview()
+//                    print(self.projectOverview)
+                } catch {
+                    print("Issue")
+                }
+            }
     }
 }

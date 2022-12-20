@@ -77,17 +77,6 @@ struct LabelInterface: Decodable {
     }
 }
 
-//enum LabelInterface: Decodable {
-//    enum PostType: String, Decodable {
-//        case object_detection
-//        case object_tracking
-//    }
-//    struct Post: Decodable {
-//        let type, version, data_type: String
-//        let object_detection : ObjectDetection
-//        let object_tracking : ObjectTracking
-//    }
-//}
 
 // MARK: - ObjectDetection
 struct ObjectDetection: Decodable {
@@ -161,15 +150,26 @@ struct ObjectTracking: Decodable {
 //}
 
 // MARK: - Overview
-struct Overview: Decodable {
-    let results: [OverviewResult]
-    let count: Int
+struct LabelingStatus: Decodable {
+    let results: [LabelingStatusResult]
+    let count: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case count = "count"
+        case results = "results"
+    }
 }
 
 // MARK: - Result
-struct OverviewResult: Decodable {
+struct LabelingStatusResult: Decodable {
     let status, last_review_action: String?
     let count: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case status = "status"
+        case last_review_action = "last_review_action"
+        case count = "count"
+    }
 }
 
 // MARK: - Member
@@ -185,4 +185,42 @@ struct User: Hashable, Decodable {
     let name: String
     let lats_logined_at: String?
     let created_at: String
+}
+
+struct Issue: Decodable {
+    let count: Int?
+    let results: [IssueResult]
+}
+
+struct IssueResult: Decodable {
+    let id: String?
+    let asset: Asset
+    let openIssueCount: Int?
+    let thumbnail: String?
+}
+
+// MARK: - Asset
+struct Asset: Decodable {
+    let id, group, key: String?
+    let info: AssetInfo
+    let createdAt, createdBy, lastUpdatedAt, lastUpdatedBy: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, group, key, info
+        case createdAt = "created_at"
+        case createdBy = "created_by"
+        case lastUpdatedAt = "last_updated_at"
+        case lastUpdatedBy = "last_updated_by"
+    }
+}
+
+// MARK: - AssetInfo
+struct AssetInfo: Decodable {
+    let type, fileKey, fileName: String?
+
+    enum CodingKeys: String, CodingKey {
+        case type
+        case fileKey = "file_key"
+        case fileName = "file_name"
+    }
 }

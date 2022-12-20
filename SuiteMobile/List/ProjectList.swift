@@ -24,9 +24,10 @@ extension ProjectList {
     static let sampleData: [ProjectList] =
     [
         ProjectList(title: "Projects", imagename: "projects_icon"),
-        ProjectList(title: "Data", imagename: "data_icon"),
+        // ProjectList(title: "Data", imagename: "data_icon"),
         ProjectList(title: "Users", imagename: "users_icon"),
-        ProjectList(title: "Integrations", imagename: "integrations_icon"),
+        // ProjectList(title: "Integrations", imagename: "integrations_icon"),
         ProjectList(title: "Settings", imagename: "settings_icon")
     ]
+    // Data and Integeration tab is not enabled in Mobile version.
 }

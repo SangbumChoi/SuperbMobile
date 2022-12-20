@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-struct DataList: Hashable, Codable {
+struct LabelingStatusDataList: Hashable, Codable {
     var inprogress_rejected: Int = 0
     var inprogress_notsubmitted: Int = 0
     var submitted_approved: Int = 0
@@ -23,3 +23,4 @@ struct ProjectMemberList: Hashable, Codable {
     var manager: Int = 0
     var labeler: Int = 0
 }
+
