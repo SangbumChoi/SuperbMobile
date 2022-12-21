@@ -50,6 +50,7 @@ struct MainView: View {
             }
         }
         .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -64,12 +65,6 @@ struct MainRow: View {
             Text(main.title)
             Spacer()
         }
-    }
-}
-
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView(mains: ProjectList.sampleData, title: "pingu")
     }
 }
 

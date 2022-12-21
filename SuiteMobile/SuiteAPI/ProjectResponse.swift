@@ -161,6 +161,7 @@ class ProjectIssueResponse : ObservableObject {
                     let parseData = try JSONDecoder().decode(Issue.self, from: data)
                     print("issue", parseData)
                     self.projectIssue = parseData.results
+                    print(self.projectIssue)
 //                    self.processProjectOverview()
 //                    print(self.projectOverview)
                 } catch {

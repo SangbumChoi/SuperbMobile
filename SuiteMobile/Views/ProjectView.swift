@@ -14,11 +14,12 @@ struct ProjectView: View {
     @ObservedObject private var projectIssueResponse = ProjectIssueResponse()
 
     @State var searchText = ""
-    @State var isActive = false
+    @State var isActive = true
     
     var body: some View {
         HStack{
             TextField("Search projects here", text: $searchText)
+                .autocapitalization(.none)
         }
         .padding()
         .background(Color(.systemGray4))
@@ -27,25 +28,25 @@ struct ProjectView: View {
         
         List(projectListsResponse.projectLists.filter({($0.name?.contains(searchText))! || searchText.isEmpty}), id: \.id) { sample in
             Button {
-                isActive = true
-                projectLabelingStatusResponse.fetchProjectOverview(id: sample.id!)
-                projectMemberResponse.fetchProjectMember(id: sample.id!)
-                projectIssueResponse.fetchIssue(project_id: sample.id!)
-            } label : {
-                ProjectRow(project: sample)
-            }.background(
-            NavigationLink(destination: ProjectDetail(project: sample,
-                                                      labelingstatus: projectLabelingStatusResponse.processedLabelingStatus,
-                                                      issue: projectIssueResponse.projectIssue,
-                                                      member: projectMemberResponse.projectMember),
-                           isActive: $isActive) {
-                EmptyView()
-            })
-        }
+                    isActive = true
+                    projectLabelingStatusResponse.fetchProjectOverview(id: sample.id!)
+                    projectMemberResponse.fetchProjectMember(id: sample.id!)
+                    projectIssueResponse.fetchIssue(project_id: sample.id!)
+                } label : {
+                    ProjectRow(project: sample)
+                }.background(
+                NavigationLink(destination: ProjectDetail(project: sample,
+                                                          labelingstatus: projectLabelingStatusResponse.processedLabelingStatus,
+                                                          issue: projectIssueResponse.projectIssue,
+                                                          member: projectMemberResponse.projectMember),
+                               isActive: $isActive) {
+                    EmptyView()
+                })
+            }
 //        .environment(\.defaultMinListRowHeight, 50)
-//        .navigationTitle(main.title)
-//        .navigationBarTitleDisplayMode(.inline)
-    }
+        .navigationTitle(main.title)
+        .navigationBarTitleDisplayMode(.inline)
+        }
 }
 
 struct ProjectDetail: View {
@@ -120,29 +121,13 @@ struct ProjectRow: View {
                     .foregroundColor(Color.orange)
                 VStack(alignment: .leading) {
                     Text(project.name!)
-                        .foregroundColor(Color.black)
+//                        .foregroundColor(Color.black)
                         .fontWeight(.bold)
                     Text("\(project.label_count!) labels")
-                        .foregroundColor(Color.black.opacity(0.5))
+//                        .foregroundColor(Color.black.opacity(0.5))
                 }
                 Spacer()
             }
-//            HStack (alignment: .lastTextBaseline, spacing: 0) {
-//                if project.label_interface.data_type! == "image" {
-//                    ForEach(project.label_interface.object_detection.annotation_types, id: \.self) { annotation_type in
-//                        generateAnnotationTypeIcon(annotationtype: annotation_type!)
-//                            .foregroundColor(Color.orange)
-//                            .frame(maxWidth: .infinity, alignment: .trailing)
-//                    }
-//                }
-//                if project.label_interface.data_type! == "image sequence" {
-//                    ForEach(project.label_interface.object_tracking.annotation_types, id: \.self) { annotation_type in
-//                        generateAnnotationTypeIcon(annotationtype: annotation_type!)
-//                            .foregroundColor(Color.orange)
-//                            .frame(maxWidth: .infinity, alignment: .trailing)
-//                    }
-//                }
-//            }
         }
     }
 }
