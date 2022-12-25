@@ -22,19 +22,21 @@ struct ProjectView: View {
             ForEach(projectListsResponse.projectLists.filter({($0.name?.contains(searchText))! || searchText.isEmpty}), id: \.id) { sample in
                 Button {
                     isActive = true
-                    projectLabelingStatusResponse.fetchProjectOverview(id: sample.id!)
+                    projectLabelingStatusResponse.fetchProjectOverview(id: sample.id!, title: sample.name!)
                     projectMemberResponse.fetchProjectMember(id: sample.id!)
                     projectIssueResponse.fetchIssue(project_id: sample.id!)
                 } label : {
                     ProjectRow(project: sample)
                 }.background(
                     NavigationLink(destination: ProjectDetailView(
-                                        labelingstatus: projectLabelingStatusResponse.processedLabelingStatus,
-                                        issue: projectIssueResponse.projectIssue,
-                                        member: projectMemberResponse.projectMember),
-                                   isActive: $isActive) {
-                                       EmptyView()
-                                   })
+                    title: projectLabelingStatusResponse.projectTitle,
+                    labelingstatus: projectLabelingStatusResponse.processedLabelingStatus,
+                    issue: projectIssueResponse.projectIssue,
+                    member: projectMemberResponse.projectMember),
+                    isActive: $isActive) {
+                       EmptyView()
+                    }
+                )
             }
         }
     }

@@ -7,11 +7,15 @@ import SwiftUI
 struct IssueView: View {
     
     let issue: [IssueResult]
-        
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+    ]
+
     @State var searchKey = ""
-    
+    @State var isActive = false // if this set as true then pagination is automatically moved.
+
     var body: some View {
-        
         HStack{
             TextField("Search labels here", text: $searchKey)
                 .autocapitalization(.none)
@@ -21,13 +25,35 @@ struct IssueView: View {
         .cornerRadius(6)
         .padding(.horizontal)
         
-        List(issue.filter({($0.asset.key?.contains(searchKey))! || searchKey.isEmpty}), id: \.id) { sample in
-            Text(sample.asset.key!)
-            AsyncImage(url: URL(string: sample.thumbnail!)) { image in
-                image.resizable()
-            } placeholder: {
-                ProgressView()
-            }.frame(width: 200, height: 100)
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(issue.filter({($0.asset.key?.contains(searchKey))! || searchKey.isEmpty}), id: \.id) { sample in
+                    Button {
+                        isActive = true
+                    } label : {
+                        IssueRow(issue: sample)
+                    }.background(
+                        NavigationLink(destination: IssueDetailView(),
+                        isActive: $isActive) {
+                           EmptyView()
+                        }
+                    )
+                }
+            }
+            .padding(.horizontal)
         }
+    }
+}
+
+struct IssueRow: View {
+    var issue: IssueResult
+
+    var body: some View {
+        Text(issue.asset.key!)
+        AsyncImage(url: URL(string: issue.thumbnail!)) { image in
+            image.resizable()
+        } placeholder: {
+            ProgressView()
+        }.frame(width: 200, height: 100)
     }
 }

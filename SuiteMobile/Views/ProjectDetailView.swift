@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProjectDetailView: View {
     
+    var title: String
     var labelingstatus: LabelingStatusDataList
     var issue: [IssueResult]
     var member: ProjectMemberList
@@ -151,7 +152,7 @@ struct ProjectDetailView: View {
                 }
             }
         }
-//        .navigationTitle("test") // navigationLink안에 넣으면 안되는 듯한 느낌
-//        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(title) // navigationLink안에 넣으면 안되는 듯한 느낌
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

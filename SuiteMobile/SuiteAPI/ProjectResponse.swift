@@ -46,11 +46,11 @@ class ProjectListsResponse: ObservableObject {
 class ProjectLabelingStatusResponse: ObservableObject {
     @Published var projectLabelingStatus = [LabelingStatusResult]()
     @Published var processedLabelingStatus = LabelingStatusDataList()
+    @Published var projectTitle = String()
     
-    func fetchProjectOverview(id: String){
+    func fetchProjectOverview(id: String, title: String){
         
         let baseUrl = "https://suite-api.dev.superb-ai.com/v2/projects/\(id)/overview/"
-        print(baseUrl)
         let token = UserDefaults.standard.string(forKey: "jsonwebtoken")
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
@@ -63,6 +63,7 @@ class ProjectLabelingStatusResponse: ObservableObject {
                 do {
                     let parseData = try JSONDecoder().decode(LabelingStatus.self, from: data)
                     self.projectLabelingStatus = parseData.results
+                    self.projectTitle = title
                     self.processLabelingStatus()
                 } catch {
                     print("LabelingStatus")

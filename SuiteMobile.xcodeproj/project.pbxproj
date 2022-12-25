@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E81F0B372957F9F800F33825 /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F0B362957F9F800F33825 /* ProjectDetailView.swift */; };
+		E81F0B3929581E5800F33825 /* IssueDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F0B3829581E5800F33825 /* IssueDetailView.swift */; };
 		E83117E428D0433100356A6F /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83117E328D0433100356A6F /* ProjectView.swift */; };
 		E83117EC28D04A2000356A6F /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = E83117EB28D04A2000356A6F /* SampleData.json */; };
 		E83117F028D04B7C00356A6F /* DataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83117EF28D04B7C00356A6F /* DataList.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		E81F0B362957F9F800F33825 /* ProjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailView.swift; sourceTree = "<group>"; };
+		E81F0B3829581E5800F33825 /* IssueDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailView.swift; sourceTree = "<group>"; };
 		E83117E328D0433100356A6F /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
 		E83117EB28D04A2000356A6F /* SampleData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleData.json; sourceTree = "<group>"; };
 		E83117EF28D04B7C00356A6F /* DataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataList.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				E8D89D9D28D2BFE600BC1ADF /* LoginView.swift */,
 				E8FBDD9F28D40D15003969F6 /* UsersView.swift */,
 				E8BC57FE294EFE2D00037E65 /* IssueView.swift */,
+				E81F0B3829581E5800F33825 /* IssueDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				E8FBDDA028D40D15003969F6 /* UsersView.swift in Sources */,
 				E8FBDDA228D40FA8003969F6 /* MemberResponse.swift in Sources */,
 				E81F0B372957F9F800F33825 /* ProjectDetailView.swift in Sources */,
+				E81F0B3929581E5800F33825 /* IssueDetailView.swift in Sources */,
 				E8D89D9A28D1C44600BC1ADF /* TokenResponse.swift in Sources */,
 				E8A2496728D0078D00DAAFB0 /* MainView.swift in Sources */,
 				E83117F028D04B7C00356A6F /* DataList.swift in Sources */,
