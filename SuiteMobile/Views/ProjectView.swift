@@ -9,7 +9,7 @@ struct ProjectView: View {
     @ObservedObject private var projectListsResponse = ProjectListsResponse()
     @ObservedObject private var projectLabelingStatusResponse = ProjectLabelingStatusResponse()
     @ObservedObject private var projectMemberResponse = ProjectMemberResponse()
-    @ObservedObject private var projectIssueResponse = ProjectIssueResponse()
+    @ObservedObject private var issueResponse = IssueResponse()
 
     @State var searchText = "" 
     @State var isActive = false // if this set as true then pagination is automatically moved.
@@ -24,14 +24,15 @@ struct ProjectView: View {
                     isActive = true
                     projectLabelingStatusResponse.fetchProjectOverview(id: sample.id!, title: sample.name!)
                     projectMemberResponse.fetchProjectMember(id: sample.id!)
-                    projectIssueResponse.fetchIssue(project_id: sample.id!)
+                    issueResponse.fetchIssue(project_id: sample.id!)
                 } label : {
                     ProjectRow(project: sample)
                 }.background(
                     NavigationLink(destination: ProjectDetailView(
                     title: projectLabelingStatusResponse.projectTitle,
+                    project_id: projectLabelingStatusResponse.projectId,
                     labelingstatus: projectLabelingStatusResponse.processedLabelingStatus,
-                    issue: projectIssueResponse.projectIssue,
+                    issue: issueResponse.issue,
                     member: projectMemberResponse.projectMember),
                     isActive: $isActive) {
                        EmptyView()
@@ -67,20 +68,6 @@ struct ProjectRow: View {
     }
 }
 
-struct LabelRow: View {
-    var name: String
-    var imagename: String
-
-    var body: some View {
-        HStack {
-            Image(systemName: imagename)
-                .resizable()
-                .frame(width: 25, height: 25)
-            Text(name)
-            Spacer()
-        }
-    }
-}
 
 struct CircleImage: View {
     var image: Image

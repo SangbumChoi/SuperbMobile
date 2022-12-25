@@ -11,6 +11,9 @@ struct IssueView: View {
         GridItem(.flexible()),
         GridItem(.flexible()),
     ]
+    let project_id: String
+
+    @ObservedObject private var issueThreadResponse = IssueThreadResponse()
 
     @State var searchKey = ""
     @State var isActive = false // if this set as true then pagination is automatically moved.
@@ -30,10 +33,11 @@ struct IssueView: View {
                 ForEach(issue.filter({($0.asset.key?.contains(searchKey))! || searchKey.isEmpty}), id: \.id) { sample in
                     Button {
                         isActive = true
+                        issueThreadResponse.fetchIssueThread(project_id: project_id, label_id: sample.id!)
                     } label : {
                         IssueRow(issue: sample)
                     }.background(
-                        NavigationLink(destination: IssueDetailView(),
+                        NavigationLink(destination: IssueDetailView(issueThread: issueThreadResponse.issueThread),
                         isActive: $isActive) {
                            EmptyView()
                         }

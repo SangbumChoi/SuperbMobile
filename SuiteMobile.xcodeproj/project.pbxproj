@@ -16,6 +16,7 @@
 		E83117F928D15D5D00356A6F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E83117F828D15D5D00356A6F /* Alamofire */; };
 		E83117FC28D15D8000356A6F /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E83117FB28D15D8000356A6F /* SwiftyJSON */; };
 		E831180028D16D4D00356A6F /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83117FF28D16D4D00356A6F /* Structure.swift */; };
+		E88B3524295857A800535992 /* IssueResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B3523295857A800535992 /* IssueResponse.swift */; };
 		E8A2496528D0078D00DAAFB0 /* SuiteMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A2496428D0078D00DAAFB0 /* SuiteMobileApp.swift */; };
 		E8A2496728D0078D00DAAFB0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A2496628D0078D00DAAFB0 /* MainView.swift */; };
 		E8A2496928D0078F00DAAFB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8A2496828D0078F00DAAFB0 /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		E83117EF28D04B7C00356A6F /* DataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataList.swift; sourceTree = "<group>"; };
 		E83117F528D09E2C00356A6F /* IntegrationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationsView.swift; sourceTree = "<group>"; };
 		E83117FF28D16D4D00356A6F /* Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structure.swift; sourceTree = "<group>"; };
+		E88B3523295857A800535992 /* IssueResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueResponse.swift; sourceTree = "<group>"; };
 		E8A2496128D0078D00DAAFB0 /* SuiteMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuiteMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8A2496428D0078D00DAAFB0 /* SuiteMobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuiteMobileApp.swift; sourceTree = "<group>"; };
 		E8A2496628D0078D00DAAFB0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				E8D89D9928D1C44600BC1ADF /* TokenResponse.swift */,
 				E8D89D9B28D1C45500BC1ADF /* ProjectResponse.swift */,
 				E8FBDDA128D40FA8003969F6 /* MemberResponse.swift */,
+				E88B3523295857A800535992 /* IssueResponse.swift */,
 			);
 			path = SuiteAPI;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				E83117E428D0433100356A6F /* ProjectView.swift in Sources */,
 				E8BC57FB294D8CAD00037E65 /* Color.swift in Sources */,
 				E83117F628D09E2C00356A6F /* IntegrationsView.swift in Sources */,
+				E88B3524295857A800535992 /* IssueResponse.swift in Sources */,
 				E8FBDDA028D40D15003969F6 /* UsersView.swift in Sources */,
 				E8FBDDA228D40FA8003969F6 /* MemberResponse.swift in Sources */,
 				E81F0B372957F9F800F33825 /* ProjectDetailView.swift in Sources */,

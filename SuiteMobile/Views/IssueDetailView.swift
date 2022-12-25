@@ -8,33 +8,29 @@
 import SwiftUI
 
 struct IssueDetailView: View {
-        
-    @ObservedObject private var allMemberResponse = AllMemberResponse()
     
-    @State var searchText = ""
-    @State var isActive = false
+    var issueThread: [IssueThread]
     
     var body: some View {
-
-        List {
-            TextField("Search user ID here", text: $searchText)
-
-            ForEach(allMemberResponse.allMember, id: \.self) { member in
-                ForEach(member.users.filter({($0.name.contains(searchText)) || searchText.isEmpty}), id: \.self) { idx in
-                    VStack{
-                        HStack {
-                            Text(idx.name)
-                                .fontWeight(.bold)
-                            Spacer()
-                            Text(member.tenant_role)
-                        }
-                        HStack {
-                            Text(idx.email)
-                            Spacer()
-                        }
-                    }
-                }
-            }
+        ForEach(issueThread, id: \.id) { thread in
+            IssueCommentView(thread: thread)
         }
     }
 }
+
+struct IssueCommentView: View {
+    
+    var thread: IssueThread
+    
+    var body: some View {
+        Section() {
+            ForEach(thread.issueComments, id: \.id) { issuecomments in
+                Text(issuecomments.createdBy.components(separatedBy: "@")[0])
+                Text(issuecomments.message)
+                Text(issuecomments.createdAt)
+            }
+            Text("x: \(thread.info.target.point.x), y: \(thread.info.target.point.y)")
+        }
+    }
+}
+

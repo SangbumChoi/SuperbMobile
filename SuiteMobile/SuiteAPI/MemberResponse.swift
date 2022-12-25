@@ -33,7 +33,6 @@ class AllMemberResponse: ObservableObject {
                 do {
                     let parseData = try JSONDecoder().decode([Member].self, from: data)
                     self.allMember = parseData
-                    print(self.allMember)
                 } catch {
                     print("AllMember")
                 }

@@ -187,6 +187,7 @@ struct User: Hashable, Decodable {
     let created_at: String
 }
 
+// MARK: - Issue
 struct Issue: Decodable {
     let count: Int?
     let results: [IssueResult]
@@ -199,7 +200,6 @@ struct IssueResult: Decodable {
     let thumbnail: String?
 }
 
-// MARK: - Asset
 struct Asset: Decodable {
     let id, group, key: String?
     let info: AssetInfo
@@ -214,7 +214,6 @@ struct Asset: Decodable {
     }
 }
 
-// MARK: - AssetInfo
 struct AssetInfo: Decodable {
     let type, fileKey, fileName: String?
 
@@ -222,5 +221,62 @@ struct AssetInfo: Decodable {
         case type
         case fileKey = "file_key"
         case fileName = "file_name"
+    }
+}
+
+// MARK: - WelcomeElement
+struct IssueThread: Codable {
+    let id: String
+    let issueComments: [IssueComment]
+    let threadNumber: Int
+    let info: Info
+    let status, issueType, createdAt, createdBy: String
+    let lastUpdatedAt, lastUpdatedBy, label: String
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case issueComments = "issue_comments"
+        case threadNumber = "thread_number"
+        case info, status
+        case issueType = "issue_type"
+        case createdAt = "created_at"
+        case createdBy = "created_by"
+        case lastUpdatedAt = "last_updated_at"
+        case lastUpdatedBy = "last_updated_by"
+        case label
+    }
+}
+
+struct Info: Codable {
+    let color: String
+    let target: Target
+    let frameIndex: Int
+
+    enum CodingKeys: String, CodingKey {
+        case color, target
+        case frameIndex = "frame_index"
+    }
+}
+
+struct Target: Codable {
+    let point: Point
+}
+
+struct Point: Codable {
+    let x, y: Double
+    let z: Int
+}
+
+struct IssueComment: Codable {
+    let id, message, createdAt, createdBy: String
+    let lastUpdatedAt, lastUpdatedBy, issueThread: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, message
+        case createdAt = "created_at"
+        case createdBy = "created_by"
+        case lastUpdatedAt = "last_updated_at"
+        case lastUpdatedBy = "last_updated_by"
+        case issueThread = "issue_thread"
     }
 }

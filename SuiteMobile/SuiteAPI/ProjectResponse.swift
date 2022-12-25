@@ -34,7 +34,6 @@ class ProjectListsResponse: ObservableObject {
                 do {
                     let parseData = try JSONDecoder().decode(Project.self, from: data)
                     self.projectLists = parseData.results
-                    print(self.projectLists)
                 } catch {
                     print("List")
                 }
@@ -47,6 +46,7 @@ class ProjectLabelingStatusResponse: ObservableObject {
     @Published var projectLabelingStatus = [LabelingStatusResult]()
     @Published var processedLabelingStatus = LabelingStatusDataList()
     @Published var projectTitle = String()
+    @Published var projectId = String()
     
     func fetchProjectOverview(id: String, title: String){
         
@@ -64,7 +64,9 @@ class ProjectLabelingStatusResponse: ObservableObject {
                     let parseData = try JSONDecoder().decode(LabelingStatus.self, from: data)
                     self.projectLabelingStatus = parseData.results
                     self.projectTitle = title
+                    self.projectId = id
                     self.processLabelingStatus()
+                    print("project_id", id, title)
                 } catch {
                     print("LabelingStatus")
                 }
@@ -160,11 +162,8 @@ class ProjectIssueResponse : ObservableObject {
                 guard let data = responseData.data else {return}
                 do {
                     let parseData = try JSONDecoder().decode(Issue.self, from: data)
-                    print("issue", parseData)
                     self.projectIssue = parseData.results
-                    print(self.projectIssue)
-//                    self.processProjectOverview()
-//                    print(self.projectOverview)
+                    print("label_id", self.projectIssue)
                 } catch {
                     print("Issue")
                 }
