@@ -33,8 +33,8 @@ class ProjectListsResponse: ObservableObject {
                 guard let data = responseData.data else {return}
                 do {
                     let parseData = try JSONDecoder().decode(Project.self, from: data)
-                    print(parseData)
                     self.projectLists = parseData.results
+                    print(self.projectLists)
                 } catch {
                     print("List")
                 }

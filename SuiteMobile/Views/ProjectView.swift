@@ -13,8 +13,8 @@ struct ProjectView: View {
     @ObservedObject private var projectMemberResponse = ProjectMemberResponse()
     @ObservedObject private var projectIssueResponse = ProjectIssueResponse()
 
-    @State var searchText = ""
-    @State var isActive = true
+    @State var searchText = "" 
+    @State var isActive = false // if this set as true then pagination is automatically moved.
     
     var body: some View {
         HStack{
@@ -35,7 +35,7 @@ struct ProjectView: View {
                 } label : {
                     ProjectRow(project: sample)
                 }.background(
-                NavigationLink(destination: ProjectDetail(project: sample,
+                    NavigationLink(destination: ProjectDetail(
                                                           labelingstatus: projectLabelingStatusResponse.processedLabelingStatus,
                                                           issue: projectIssueResponse.projectIssue,
                                                           member: projectMemberResponse.projectMember),
@@ -51,7 +51,6 @@ struct ProjectView: View {
 
 struct ProjectDetail: View {
     
-    var project: ProjectResult
     var labelingstatus: LabelingStatusDataList
     var issue: [IssueResult]
     var member: ProjectMemberList
@@ -68,21 +67,6 @@ struct ProjectDetail: View {
                     Text("Issues")
                 }
             }
-            
-//            Section(header: LabelRow(name: "Auto-Label", imagename: "wand.and.stars")) {
-//                NavigationLink(destination: LabelsView()) {
-//                    Text("Auto-Label Settings")
-//                }
-//                NavigationLink(destination: LabelsView()) {
-//                    Text("Custom Auto-Label")
-//                }
-//            }
-//
-//            Section(header: Label("Export", systemImage: "square.and.arrow.down")) {
-//                HStack{
-//                    Label("Export function is not supported in iOS", systemImage: "xmark.seal")
-//                }
-//            }
             
             Section(header: LabelRow(name: "Analytics", imagename: "chart.line.uptrend.xyaxis")){
                 NavigationLink(destination: IssueView(issue: issue)) {
@@ -103,8 +87,8 @@ struct ProjectDetail: View {
                 }
             }
         }
-        .navigationTitle(project.name!)
-        .navigationBarTitleDisplayMode(.inline)
+//        .navigationTitle("test") // navigationLink안에 넣으면 안되는 듯한 느낌
+//        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
