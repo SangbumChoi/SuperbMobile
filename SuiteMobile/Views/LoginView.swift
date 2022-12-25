@@ -24,8 +24,7 @@ struct LoginView: View {
                 
                 HStack {
                     Spacer()
-                    NavigationLink(destination: MainView(mains: ProjectList.sampleData,
-                                                         title: tokenResponse.tenant_id),
+                    NavigationLink(destination: MainView(title: tokenResponse.tenant_id),
                                    isActive: $tokenResponse.isAuthenticated) {
                         Button(action : {
                             tokenResponse.login()

@@ -5,9 +5,7 @@ See LICENSE folder for this sample’s licensing information.
 import SwiftUI
 
 struct ProjectView: View {
-    
-    let main: ProjectList
-    
+        
     @ObservedObject private var projectListsResponse = ProjectListsResponse()
     @ObservedObject private var projectLabelingStatusResponse = ProjectLabelingStatusResponse()
     @ObservedObject private var projectMemberResponse = ProjectMemberResponse()
@@ -17,17 +15,12 @@ struct ProjectView: View {
     @State var isActive = false // if this set as true then pagination is automatically moved.
     
     var body: some View {
-        HStack{
+        List{
             TextField("Search projects here", text: $searchText)
                 .autocapitalization(.none)
-        }
-        .padding()
-        .background(Color(.systemGray4))
-        .cornerRadius(6)
-        .padding(.horizontal)
-        
-        List(projectListsResponse.projectLists.filter({($0.name?.contains(searchText))! || searchText.isEmpty}), id: \.id) { sample in
-            Button {
+            
+            ForEach(projectListsResponse.projectLists.filter({($0.name?.contains(searchText))! || searchText.isEmpty}), id: \.id) { sample in
+                Button {
                     isActive = true
                     projectLabelingStatusResponse.fetchProjectOverview(id: sample.id!)
                     projectMemberResponse.fetchProjectMember(id: sample.id!)
@@ -35,62 +28,18 @@ struct ProjectView: View {
                 } label : {
                     ProjectRow(project: sample)
                 }.background(
-                    NavigationLink(destination: ProjectDetail(
-                                                          labelingstatus: projectLabelingStatusResponse.processedLabelingStatus,
-                                                          issue: projectIssueResponse.projectIssue,
-                                                          member: projectMemberResponse.projectMember),
-                               isActive: $isActive) {
-                    EmptyView()
-                })
-            }
-//        .environment(\.defaultMinListRowHeight, 50)
-        .navigationTitle(main.title)
-        .navigationBarTitleDisplayMode(.inline)
-        }
-}
-
-struct ProjectDetail: View {
-    
-    var labelingstatus: LabelingStatusDataList
-    var issue: [IssueResult]
-    var member: ProjectMemberList
-
-    var body: some View {
-        List {
-            OverView(
-                labelingstatus: labelingstatus,
-                member: member
-            )
-            
-            Section(header: LabelRow(name: "Issues", imagename: "list.star")) {
-                NavigationLink(destination: IssueView(issue: issue)) {
-                    Text("Issues")
-                }
-            }
-            
-            Section(header: LabelRow(name: "Analytics", imagename: "chart.line.uptrend.xyaxis")){
-                NavigationLink(destination: IssueView(issue: issue)) {
-                    Text("Project Analytics")
-                }
-                NavigationLink(destination: IssueView(issue: issue)) {
-                    Text("User Reports")
-                }
-                Label("QA is not currently supported", systemImage: "xmark.seal")
-            }
-            
-            Section(header: LabelRow(name: "ETC", imagename: "wrench.and.screwdriver")) {
-                NavigationLink(destination: IssueView(issue: issue)) {
-                    Text("Project Members")
-                }
-                NavigationLink(destination: IssueView(issue: issue)) {
-                    Text("Settings")
-                }
+                    NavigationLink(destination: ProjectDetailView(
+                                        labelingstatus: projectLabelingStatusResponse.processedLabelingStatus,
+                                        issue: projectIssueResponse.projectIssue,
+                                        member: projectMemberResponse.projectMember),
+                                   isActive: $isActive) {
+                                       EmptyView()
+                                   })
             }
         }
-//        .navigationTitle("test") // navigationLink안에 넣으면 안되는 듯한 느낌
-//        .navigationBarTitleDisplayMode(.inline)
     }
 }
+
 
 struct ProjectRow: View {
     @State var projectIcon = ""

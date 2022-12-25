@@ -11,60 +11,29 @@ import SwiftyJSON
 
 struct MainView: View {
             
-    let mains: [ProjectList]
     let title: String
     
+    @State var selectedTab = 0
+    
     var body: some View {
-        List{
-            ForEach(mains) { main in
-                Group {
-                    if (main.title == "Projects") {
-                        NavigationLink(
-                            destination: ProjectView(main: main)
-                        ) {
-                            MainRow(main: main)
-                        }
-                    }
-                    else if (main.title == "Integrations") {
-                        NavigationLink(
-                            destination: IntegrationsView()
-                        ) {
-                            MainRow(main: main)
-                        }
-                    }
-                    else if (main.title == "Users") {
-                        NavigationLink(
-                            destination: UsersView(main: main)
-                        ) {
-                            MainRow(main: main)
-                        }
-                    }
-                    else {
-                        NavigationLink(
-                            destination: IntegrationsView()
-                        ) {
-                            MainRow(main: main)
-                        }
-                    }
+        TabView(selection: $selectedTab){
+            ProjectView()
+                .tabItem{
+                    Image(systemName: "arrow.right.circle.fill")
+                    Text("Projects")
                 }
-            }
+            IntegrationsView()
+                .tabItem{
+                    Image(systemName: "arrow.right.circle.fill")
+                    Text("Integrations")
+                }
+            UsersView()
+                .tabItem{
+                    Image(systemName: "arrow.right.circle.fill")
+                    Text("Users")
+                }
         }
         .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
-
-struct MainRow: View {
-    var main: ProjectList
-    
-    var body: some View {
-        HStack {
-            main.image
-                .resizable()
-                .frame(width: 50, height: 50)
-            Text(main.title)
-            Spacer()
-        }
-    }
-}
-

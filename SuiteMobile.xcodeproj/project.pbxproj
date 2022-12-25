@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E81F0B372957F9F800F33825 /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F0B362957F9F800F33825 /* ProjectDetailView.swift */; };
 		E83117E428D0433100356A6F /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83117E328D0433100356A6F /* ProjectView.swift */; };
-		E83117E728D043A800356A6F /* ProjectList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83117E628D043A800356A6F /* ProjectList.swift */; };
 		E83117EC28D04A2000356A6F /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = E83117EB28D04A2000356A6F /* SampleData.json */; };
 		E83117F028D04B7C00356A6F /* DataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83117EF28D04B7C00356A6F /* DataList.swift */; };
-		E83117F228D06FDC00356A6F /* OverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83117F128D06FDC00356A6F /* OverView.swift */; };
 		E83117F628D09E2C00356A6F /* IntegrationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83117F528D09E2C00356A6F /* IntegrationsView.swift */; };
 		E83117F928D15D5D00356A6F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E83117F828D15D5D00356A6F /* Alamofire */; };
 		E83117FC28D15D8000356A6F /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E83117FB28D15D8000356A6F /* SwiftyJSON */; };
@@ -51,11 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E81F0B362957F9F800F33825 /* ProjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailView.swift; sourceTree = "<group>"; };
 		E83117E328D0433100356A6F /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
-		E83117E628D043A800356A6F /* ProjectList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectList.swift; sourceTree = "<group>"; };
 		E83117EB28D04A2000356A6F /* SampleData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleData.json; sourceTree = "<group>"; };
 		E83117EF28D04B7C00356A6F /* DataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataList.swift; sourceTree = "<group>"; };
-		E83117F128D06FDC00356A6F /* OverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverView.swift; sourceTree = "<group>"; };
 		E83117F528D09E2C00356A6F /* IntegrationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationsView.swift; sourceTree = "<group>"; };
 		E83117FF28D16D4D00356A6F /* Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structure.swift; sourceTree = "<group>"; };
 		E8A2496128D0078D00DAAFB0 /* SuiteMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuiteMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,7 +108,7 @@
 			children = (
 				E8A2496628D0078D00DAAFB0 /* MainView.swift */,
 				E83117E328D0433100356A6F /* ProjectView.swift */,
-				E83117F128D06FDC00356A6F /* OverView.swift */,
+				E81F0B362957F9F800F33825 /* ProjectDetailView.swift */,
 				E83117F528D09E2C00356A6F /* IntegrationsView.swift */,
 				E8D89D9D28D2BFE600BC1ADF /* LoginView.swift */,
 				E8FBDD9F28D40D15003969F6 /* UsersView.swift */,
@@ -122,7 +120,6 @@
 		E83117E528D0439A00356A6F /* List */ = {
 			isa = PBXGroup;
 			children = (
-				E83117E628D043A800356A6F /* ProjectList.swift */,
 				E83117EF28D04B7C00356A6F /* DataList.swift */,
 			);
 			path = List;
@@ -355,13 +352,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E83117F228D06FDC00356A6F /* OverView.swift in Sources */,
 				E8D89D9C28D1C45500BC1ADF /* ProjectResponse.swift in Sources */,
 				E83117E428D0433100356A6F /* ProjectView.swift in Sources */,
 				E8BC57FB294D8CAD00037E65 /* Color.swift in Sources */,
 				E83117F628D09E2C00356A6F /* IntegrationsView.swift in Sources */,
 				E8FBDDA028D40D15003969F6 /* UsersView.swift in Sources */,
 				E8FBDDA228D40FA8003969F6 /* MemberResponse.swift in Sources */,
+				E81F0B372957F9F800F33825 /* ProjectDetailView.swift in Sources */,
 				E8D89D9A28D1C44600BC1ADF /* TokenResponse.swift in Sources */,
 				E8A2496728D0078D00DAAFB0 /* MainView.swift in Sources */,
 				E83117F028D04B7C00356A6F /* DataList.swift in Sources */,
@@ -370,7 +367,6 @@
 				E8D89D9E28D2BFE600BC1ADF /* LoginView.swift in Sources */,
 				E8A2496528D0078D00DAAFB0 /* SuiteMobileApp.swift in Sources */,
 				E8BC57FF294EFE2D00037E65 /* IssueView.swift in Sources */,
-				E83117E728D043A800356A6F /* ProjectList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

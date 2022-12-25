@@ -1,3 +1,10 @@
+//
+//  ProjectDetailView.swift
+//  SuiteMobile
+//
+//  Created by sangbum choi on 2022/12/25.
+//
+
 import SwiftUI
 
 struct ProjectDetailView: View {
@@ -148,4 +155,3 @@ struct ProjectDetailView: View {
 //        .navigationBarTitleDisplayMode(.inline)
     }
 }
-
