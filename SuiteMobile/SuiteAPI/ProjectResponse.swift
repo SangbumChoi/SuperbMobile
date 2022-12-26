@@ -34,6 +34,7 @@ class ProjectListsResponse: ObservableObject {
                 do {
                     let parseData = try JSONDecoder().decode(Project.self, from: data)
                     self.projectLists = parseData.results
+                    print(self.projectLists)
                 } catch {
                     print("List")
                 }

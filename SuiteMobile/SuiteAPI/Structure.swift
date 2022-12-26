@@ -65,15 +65,15 @@ struct ProjectResult: Decodable {
 // MARK: - LabelInterface
 struct LabelInterface: Decodable {
     let type, version, data_type: String?
-//    let object_detection: ObjectDetection
-//    let object_tracking: ObjectTracking
+    let object_detection: ObjectDetection?
+    let object_tracking: ObjectTracking?
 
     enum CodingKeys: String, CodingKey {
         case type = "type"
         case version = "version"
         case data_type = "data_type"
-//        case object_detection = "object_detection"
-//        case object_tracking = "object_tracking"
+        case object_detection = "object_detection"
+        case object_tracking = "object_tracking"
     }
 }
 

@@ -50,19 +50,32 @@ struct ProjectRow: View {
 
     var body: some View {
         Section {
-            HStack {
-                generateDataTypeIcon(datatype: project.label_interface.data_type ?? "")
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                    .foregroundColor(Color.orange)
-                VStack(alignment: .leading) {
-                    Text(project.name!)
-//                        .foregroundColor(Color.black)
-                        .fontWeight(.bold)
-                    Text("\(project.label_count!) labels")
-//                        .foregroundColor(Color.black.opacity(0.5))
+            VStack {
+                HStack {
+                    generateDataTypeIcon(datatype: project.label_interface.data_type ?? "")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(Color.orange)
+                    VStack(alignment: .leading) {
+                        Text(project.name!)
+                            .fontWeight(.bold)
+                        Text("\(project.label_count!) labels")
+                    }
+                    Spacer()
                 }
-                Spacer()
+                VStack(alignment: .trailing) {
+                    HStack {
+                        if project.label_interface.object_detection != nil {
+                            ForEach(project.label_interface.object_detection!.annotation_types, id: \.self) { annotation_type in
+                                generateAnnotationTypeIcon(annotationtype: annotation_type!)
+                            }
+                        } else {
+                            ForEach(project.label_interface.object_tracking!.annotation_types, id: \.self) { annotation_type in
+                                generateAnnotationTypeIcon(annotationtype: annotation_type!)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -84,13 +97,13 @@ struct CircleImage: View {
 
 func generateDataTypeIcon(datatype: String) -> Image {
     if (datatype == "image") {
-        return Image(systemName: "photo")
+        return Image("image")
     }
     else if (datatype == "image sequence") {
-        return Image(systemName: "video")
+        return Image("video")
     }
     else if (datatype == "pointclouds") {
-        return Image(systemName: "aqi.medium")
+        return Image("pointcloud")
     }
     else {
         return Image(systemName: "photo")
@@ -99,27 +112,27 @@ func generateDataTypeIcon(datatype: String) -> Image {
 
 func generateAnnotationTypeIcon(annotationtype: String) -> Image {
     if (annotationtype == "box") {
-        return Image(systemName: "rectangle")
+        return Image("box")
     }
     else if (annotationtype == "rotated box") {
-        return Image(systemName: "diamond")
+        return Image("rbox")
     }
     else if (annotationtype == "polyline") {
-        return Image(systemName: "arrow.triangle.swap")
+        return Image("polyline")
     }
     else if (annotationtype == "polygon") {
-        return Image(systemName: "seal")
+        return Image("polygon")
     }
     else if (annotationtype == "keypoint") {
-        return Image(systemName: "hand.point.up.braille")
+        return Image("keypoint")
     }
-    else if (annotationtype == "cuboid") {
-        return Image(systemName: "seal")
+    else if (annotationtype == "cuboid" || annotationtype == "cuboid2d") {
+        return Image("cuboid")
     }
     else if (annotationtype == "image category") {
-        return Image(systemName: "line.3.horizontal")
+        return Image("image_categorization")
     }
     else {
-        return Image(systemName: "aqi.medium")
+        return Image("aqi.medium")
     }
 }
