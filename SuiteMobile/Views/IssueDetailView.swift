@@ -10,10 +10,26 @@ import SwiftUI
 struct IssueDetailView: View {
     
     var issueThread: [IssueThread]
+    var issueImageURL: String
     
     var body: some View {
-        ForEach(issueThread, id: \.id) { thread in
-            IssueCommentView(thread: thread)
+        ZStack {
+            Color(hex: "EAEAEA")
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack {
+                AsyncImage(url: URL(string: issueImageURL)) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
+                
+                ScrollView{
+                    ForEach(issueThread, id: \.id) { thread in
+                        IssueCommentView(thread: thread)
+                    }
+                }
+            }
         }
     }
 }
@@ -23,14 +39,23 @@ struct IssueCommentView: View {
     var thread: IssueThread
     
     var body: some View {
-        Section() {
-            ForEach(thread.issueComments, id: \.id) { issuecomments in
-                Text(issuecomments.createdBy.components(separatedBy: "@")[0])
+        ForEach(thread.issueComments, id: \.id) { issuecomments in
+            VStack(alignment: .leading) {
+                HStack{
+                    Text("\(issuecomments.createdBy.components(separatedBy: "@")[0])")
+                        .fontWeight(.bold)
+                    Text("\(issuecomments.createdAt.components(separatedBy: "T")[0])")
+                        .foregroundColor(Color(.systemGray4))
+                }
                 Text(issuecomments.message)
-                Text(issuecomments.createdAt)
+//                Text(issuecomments.createdAt)
             }
-            Text("x: \(thread.info.target.point.x), y: \(thread.info.target.point.y)")
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(12)
+            .background(.white)
+            .cornerRadius(12)
         }
+//        Text("x: \(thread.info.target.point.x), y: \(thread.info.target.point.y)")
     }
 }
 

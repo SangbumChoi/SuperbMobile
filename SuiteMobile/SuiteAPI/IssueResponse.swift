@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Alamofire
+import SwiftUI
 
 
 class IssueResponse : ObservableObject {
@@ -39,7 +40,8 @@ class IssueResponse : ObservableObject {
 
 class IssueThreadResponse : ObservableObject {
     @Published var issueThread = [IssueThread]()
-
+    @Published var issueImageURL : String = ""
+    
     func fetchIssueThread(project_id: String, label_id: String) {
         
         let baseUrl = "https://suite-api.dev.superb-ai.com/projects/\(project_id)/labels/\(label_id)/issue-threads/"
@@ -53,7 +55,6 @@ class IssueThreadResponse : ObservableObject {
             .response { (responseData) in
                 guard let data = responseData.data else {return}
                 do {
-                    print(baseUrl)
                     let parseData = try JSONDecoder().decode([IssueThread].self, from: data)
                     self.issueThread = parseData
                     print("issueThread", self.issueThread)
@@ -61,5 +62,9 @@ class IssueThreadResponse : ObservableObject {
                     print("Issue")
                 }
             }
+    }
+    
+    func fetchIssueImageURL(url: String) {
+        self.issueImageURL = url
     }
 }

@@ -19,17 +19,17 @@ struct MainView: View {
         TabView(selection: $selectedTab){
             ProjectView()
                 .tabItem{
-                    Image(systemName: "arrow.right.circle.fill")
+                    Image("dashboard")
                     Text("Projects")
                 }
             IntegrationsView()
                 .tabItem{
-                    Image(systemName: "arrow.right.circle.fill")
+                    Image("doughnut_chart")
                     Text("Integrations")
                 }
             UsersView()
                 .tabItem{
-                    Image(systemName: "arrow.right.circle.fill")
+                    Image("ulist")
                     Text("Users")
                 }
         }
