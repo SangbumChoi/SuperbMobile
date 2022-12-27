@@ -54,12 +54,16 @@ struct ProjectRow: View {
                 HStack {
                     generateDataTypeIcon(datatype: project.label_interface.data_type ?? "")
                         .resizable()
-                        .frame(width: 40, height: 40)
-                        .foregroundColor(Color.orange)
+                        .foregroundColor(Color(hex: "FF625A"))
+                        .frame(width: 55, height: 55)
                     VStack(alignment: .leading) {
                         Text(project.name!)
+                            .font(.system(size:22))
+                            .foregroundColor(.black)
                             .fontWeight(.bold)
                         Text("\(project.label_count!) labels")
+                            .font(.system(size:16))
+                            .foregroundColor(.gray)
                     }
                     Spacer()
                 }
@@ -83,15 +87,15 @@ struct ProjectRow: View {
 
 
 struct CircleImage: View {
-    var image: Image
+    var imagename: String
 
     var body: some View {
-        image
-            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-            .overlay {
-                Circle().stroke(.white, lineWidth: 4)
-            }
-            .shadow(radius: 7)
+        Image(imagename)
+            .frame(width: 20, height: 20)
+            .foregroundColor(Color(hex: "FF625A"))
+            .padding(2)
+            .background(Color(hex: "FFF6F6"))
+            .clipShape(Circle())
     }
 }
 
@@ -110,29 +114,29 @@ func generateDataTypeIcon(datatype: String) -> Image {
     }
 }
 
-func generateAnnotationTypeIcon(annotationtype: String) -> Image {
+func generateAnnotationTypeIcon(annotationtype: String) -> CircleImage {
     if (annotationtype == "box") {
-        return Image("box")
+        return CircleImage(imagename: "box")
     }
-    else if (annotationtype == "rotated box") {
-        return Image("rbox")
+    else if (annotationtype == "rbox") {
+        return CircleImage(imagename: "rbox")
     }
     else if (annotationtype == "polyline") {
-        return Image("polyline")
+        return CircleImage(imagename: "polyline")
     }
     else if (annotationtype == "polygon") {
-        return Image("polygon")
+        return CircleImage(imagename: "polygon")
     }
     else if (annotationtype == "keypoint") {
-        return Image("keypoint")
+        return CircleImage(imagename: "keypoint")
     }
     else if (annotationtype == "cuboid" || annotationtype == "cuboid2d") {
-        return Image("cuboid")
+        return CircleImage(imagename: "cuboid")
     }
     else if (annotationtype == "image category") {
-        return Image("image_categorization")
+        return CircleImage(imagename: "image_categorization")
     }
     else {
-        return Image("aqi.medium")
+        return CircleImage(imagename: "")
     }
 }

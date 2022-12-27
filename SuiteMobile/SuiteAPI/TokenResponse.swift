@@ -63,7 +63,7 @@ class Webservice {
         }
         
         let body = try! JSONSerialization.data(withJSONObject: ["tenant_id": tenant_id, "email": email, "password": password], options: [])
-        let test = LoginRequestBody(tenant_id: tenant_id, email: email, password: password)
+//        _ = LoginRequestBody(tenant_id: tenant_id, email: email, password: password)
                 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
