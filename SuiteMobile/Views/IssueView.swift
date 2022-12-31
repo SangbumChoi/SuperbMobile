@@ -13,6 +13,7 @@ struct IssueView: View {
     let project_id: String
 
     @ObservedObject private var issueThreadResponse = IssueThreadResponse()
+    @ObservedObject private var urlResponse = URLResponse()
 
     @State var searchKey = ""
     @State var isActive = false // if this set as true then pagination is automatically moved.
@@ -45,11 +46,12 @@ struct IssueView: View {
                                     isActive = true
                                     issueThreadResponse.fetchIssueThread(project_id: project_id, label_id: sample.id!)
                                     issueThreadResponse.fetchIssueImageURL(url: sample.thumbnail!)
+                                    urlResponse.fetchURL(asset_id: sample.asset.id!, type: sample.asset.info.type!)
                                 } label : {
                                     IssueRow(issue: sample)
                                 }.background(
                                     NavigationLink(destination: IssueDetailView(issueThread: issueThreadResponse.issueThread,
-                                                                                issueImageURL: issueThreadResponse.issueImageURL),
+                                                                                originalImageURL: urlResponse.originalImageURL),
                                                    isActive: $isActive) {
                                                        EmptyView()
                                                    }

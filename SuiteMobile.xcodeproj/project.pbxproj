@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80749DA29600ABE00820C59 /* URLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80749D929600ABE00820C59 /* URLResponse.swift */; };
+		E80749DC296010CB00820C59 /* ImageModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80749DB296010CB00820C59 /* ImageModifier.swift */; };
 		E81F0B372957F9F800F33825 /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F0B362957F9F800F33825 /* ProjectDetailView.swift */; };
 		E81F0B3929581E5800F33825 /* IssueDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F0B3829581E5800F33825 /* IssueDetailView.swift */; };
 		E83117E428D0433100356A6F /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83117E328D0433100356A6F /* ProjectView.swift */; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E80749D929600ABE00820C59 /* URLResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponse.swift; sourceTree = "<group>"; };
+		E80749DB296010CB00820C59 /* ImageModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModifier.swift; sourceTree = "<group>"; };
 		E81F0B362957F9F800F33825 /* ProjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailView.swift; sourceTree = "<group>"; };
 		E81F0B3829581E5800F33825 /* IssueDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailView.swift; sourceTree = "<group>"; };
 		E83117E328D0433100356A6F /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 				E8D89D9B28D1C45500BC1ADF /* ProjectResponse.swift */,
 				E8FBDDA128D40FA8003969F6 /* MemberResponse.swift */,
 				E88B3523295857A800535992 /* IssueResponse.swift */,
+				E80749D929600ABE00820C59 /* URLResponse.swift */,
 			);
 			path = SuiteAPI;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 			children = (
 				E8D89DA028D2C50900BC1ADF /* View+Extensions.swift */,
 				E8BC57FA294D8CAD00037E65 /* Color.swift */,
+				E80749DB296010CB00820C59 /* ImageModifier.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -358,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E80749DC296010CB00820C59 /* ImageModifier.swift in Sources */,
 				E8D89D9C28D1C45500BC1ADF /* ProjectResponse.swift in Sources */,
 				E83117E428D0433100356A6F /* ProjectView.swift in Sources */,
 				E8BC57FB294D8CAD00037E65 /* Color.swift in Sources */,
@@ -372,6 +379,7 @@
 				E83117F028D04B7C00356A6F /* DataList.swift in Sources */,
 				E831180028D16D4D00356A6F /* Structure.swift in Sources */,
 				E8D89DA128D2C50900BC1ADF /* View+Extensions.swift in Sources */,
+				E80749DA29600ABE00820C59 /* URLResponse.swift in Sources */,
 				E8D89D9E28D2BFE600BC1ADF /* LoginView.swift in Sources */,
 				E8A2496528D0078D00DAAFB0 /* SuiteMobileApp.swift in Sources */,
 				E8BC57FF294EFE2D00037E65 /* IssueView.swift in Sources */,

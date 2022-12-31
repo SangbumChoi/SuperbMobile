@@ -10,7 +10,7 @@ import SwiftUI
 struct IssueDetailView: View {
     
     var issueThread: [IssueThread]
-    var issueImageURL: String
+    var originalImageURL: [String]
     
     var body: some View {
         ZStack {
@@ -18,10 +18,18 @@ struct IssueDetailView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                AsyncImage(url: URL(string: issueImageURL)) { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
+                ForEach(originalImageURL, id: \.self) { imageurl in
+                    GeometryReader {
+                        proxy in
+                        AsyncImage(url: URL(string: imageurl)) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .modifier(ImageModifier(contentSize: CGSize(width: proxy.size.width, height: proxy.size.height)))
+                        } placeholder: {
+                            ProgressView()
+                        }
+                    }
                 }
                 
                 ScrollView{

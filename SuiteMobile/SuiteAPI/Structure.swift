@@ -280,3 +280,11 @@ struct IssueComment: Codable {
         case issueThread = "issue_thread"
     }
 }
+
+struct ResponseURL: Decodable {
+    let url: String
+}
+
+struct ResponseVideoURL: Decodable {
+    let url: [String]
+}
