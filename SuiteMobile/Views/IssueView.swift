@@ -36,6 +36,7 @@ struct IssueView: View {
                         .font(.system(size:16))
                         .fontWeight(.bold)
                         .foregroundColor(.gray)
+                    Spacer()
                 } else {
                     ScrollView {
                         VStack {
