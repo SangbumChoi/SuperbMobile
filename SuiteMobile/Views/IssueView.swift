@@ -17,6 +17,7 @@ struct IssueView: View {
 
     @State var searchKey = ""
     @State var isActive = false // if this set as true then pagination is automatically moved.
+    @State var title = ""
     
     var body: some View {
         ZStack{
@@ -46,20 +47,23 @@ struct IssueView: View {
                                     isActive = true
                                     issueThreadResponse.fetchIssueThread(project_id: project_id, label_id: sample.id!)
                                     urlResponse.fetchURL(asset_id: sample.asset.id!, type: sample.asset.info.type!)
+                                    title = sample.asset.key!
                                 } label : {
                                     IssueRow(issue: sample)
                                 }
                             }
-                            .background(
-                                NavigationLink(destination: IssueDetailView(issueThread: issueThreadResponse.issueThread,
-                                                                            originalImageURL: urlResponse.originalImageURL),
-                                               isActive: $isActive) {EmptyView()}
-                            )
+
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(12)
                             .background(.white)
                             .cornerRadius(12)
                         }
+                        .background(
+                            NavigationLink(destination: IssueDetailView(issueThread: issueThreadResponse.issueThread,
+                                                                        originalImageURL: urlResponse.originalImageURL,
+                                                                        title: title),
+                                           isActive: $isActive) {EmptyView()}
+                        )
                     }
                     .padding(.horizontal)
                 }

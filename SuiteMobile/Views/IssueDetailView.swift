@@ -11,6 +11,7 @@ struct IssueDetailView: View {
     
     var issueThread: [IssueThread]
     var originalImageURL: [String]
+    var title: String
     
     var body: some View {
         ZStack {
@@ -19,25 +20,44 @@ struct IssueDetailView: View {
             
             VStack {
                 TabView {
-                    ForEach(originalImageURL, id: \.self) { imageurl in
-                        GeometryReader {
-                            proxy in
-                            AsyncImage(url: URL(string: imageurl)) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .modifier(ImageModifier(contentSize: CGSize(width: proxy.size.width, height: proxy.size.height)))
-                            } placeholder: {
-                                ProgressView()
-                            }
-                        }
+                    ForEach(0..<originalImageURL.count, id: \.self) { index in
+                        IssueCombineView(index: index, originalImageURL: originalImageURL, issueThread: issueThread)
                     }
                 }.tabViewStyle(PageTabViewStyle())
                 
-                ScrollView{
-                    ForEach(issueThread, id: \.id) { thread in
-                        IssueCommentView(thread: thread)
-                    }
+            }
+        }
+        .navigationTitle(title) // navigationLink안에 넣으면 안되는 듯한 느낌
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct IssueCombineView: View {
+    
+    var index: Int
+    var originalImageURL: [String]
+    var issueThread: [IssueThread]
+    
+    var body: some View {
+        VStack {
+            GeometryReader {
+                proxy in
+                AsyncImage(url: URL(string: originalImageURL[index])) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .modifier(ImageModifier(contentSize: CGSize(width: proxy.size.width, height: proxy.size.height)))
+                } placeholder: {
+                    ProgressView()
+                }
+            }.background(Color(.white))
+            
+            Text("Issue Comments")
+                .fontWeight(.bold)
+            
+            ScrollView{
+                ForEach(0..<issueThread.count, id: \.self) { threadIndex in
+                    IssueCommentView(thread: issueThread[threadIndex], index: index, threadIndex: threadIndex)
                 }
             }
         }
@@ -47,25 +67,33 @@ struct IssueDetailView: View {
 struct IssueCommentView: View {
     
     var thread: IssueThread
+    var index: Int
+    var threadIndex: Int
     
     var body: some View {
-        ForEach(thread.issueComments, id: \.id) { issuecomments in
-            VStack(alignment: .leading) {
-                HStack{
-                    Text("\(issuecomments.createdBy.components(separatedBy: "@")[0])")
-                        .fontWeight(.bold)
-                    Text("\(issuecomments.createdAt.components(separatedBy: "T")[0])")
-                        .foregroundColor(Color(.systemGray4))
+        if thread.info.frameIndex == index {
+            ForEach(0..<thread.issueComments.count, id: \.self) { commentIndex in
+                VStack(alignment: .leading) {
+                    HStack{
+                        if commentIndex == 0 {
+                            Image("issuethread")
+                                .overlay(Text("\(thread.threadNumber)"))
+                        } else {
+                            Image("reply")
+                        }
+                        Text("\(thread.issueComments[commentIndex].createdBy.components(separatedBy: "@")[0])")
+                            .fontWeight(.bold)
+                        Text("\(thread.issueComments[commentIndex].createdAt.components(separatedBy: "T")[0])")
+                            .foregroundColor(Color(.systemGray4))
+                    }
+                    Text(thread.issueComments[commentIndex].message)
                 }
-                Text(issuecomments.message)
-//                Text(issuecomments.createdAt)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(12)
-            .background(.white)
-            .cornerRadius(12)
-        }
-//        Text("x: \(thread.info.target.point.x), y: \(thread.info.target.point.y)")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(12)
+                .background(.white)
+                .cornerRadius(12)
+            }.padding(.horizontal)
+        } else {}
     }
 }
 
