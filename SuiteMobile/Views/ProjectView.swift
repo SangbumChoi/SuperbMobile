@@ -27,18 +27,16 @@ struct ProjectView: View {
                     issueResponse.fetchIssue(project_id: sample.id!)
                 } label : {
                     ProjectRow(project: sample)
-                }.background(
-                    NavigationLink(destination: ProjectDetailView(
-                    title: projectLabelingStatusResponse.projectTitle,
-                    project_id: projectLabelingStatusResponse.projectId,
-                    labelingstatus: projectLabelingStatusResponse.processedLabelingStatus,
-                    issue: issueResponse.issue,
-                    member: projectMemberResponse.projectMember),
-                    isActive: $isActive) {
-                       EmptyView()
-                    }
-                )
-            }
+                }
+            }.background(
+                NavigationLink(destination: ProjectDetailView(
+                title: projectLabelingStatusResponse.projectTitle,
+                project_id: projectLabelingStatusResponse.projectId,
+                labelingstatus: projectLabelingStatusResponse.processedLabelingStatus,
+                issue: issueResponse.issue,
+                member: projectMemberResponse.projectMember),
+                isActive: $isActive) {EmptyView()}
+            )
         }
     }
 }

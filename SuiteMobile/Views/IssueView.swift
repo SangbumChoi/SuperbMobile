@@ -45,18 +45,16 @@ struct IssueView: View {
                                 Button {
                                     isActive = true
                                     issueThreadResponse.fetchIssueThread(project_id: project_id, label_id: sample.id!)
-                                    issueThreadResponse.fetchIssueImageURL(url: sample.thumbnail!)
                                     urlResponse.fetchURL(asset_id: sample.asset.id!, type: sample.asset.info.type!)
                                 } label : {
                                     IssueRow(issue: sample)
-                                }.background(
-                                    NavigationLink(destination: IssueDetailView(issueThread: issueThreadResponse.issueThread,
-                                                                                originalImageURL: urlResponse.originalImageURL),
-                                                   isActive: $isActive) {
-                                                       EmptyView()
-                                                   }
-                                )
+                                }
                             }
+                            .background(
+                                NavigationLink(destination: IssueDetailView(issueThread: issueThreadResponse.issueThread,
+                                                                            originalImageURL: urlResponse.originalImageURL),
+                                               isActive: $isActive) {EmptyView()}
+                            )
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(12)
                             .background(.white)

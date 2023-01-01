@@ -40,7 +40,6 @@ class IssueResponse : ObservableObject {
 
 class IssueThreadResponse : ObservableObject {
     @Published var issueThread = [IssueThread]()
-    @Published var issueImageURL : String = ""
     
     func fetchIssueThread(project_id: String, label_id: String) {
         
@@ -62,9 +61,5 @@ class IssueThreadResponse : ObservableObject {
                     print("Issue")
                 }
             }
-    }
-    
-    func fetchIssueImageURL(url: String) {
-        self.issueImageURL = url
     }
 }

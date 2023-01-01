@@ -18,19 +18,21 @@ struct IssueDetailView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                ForEach(originalImageURL, id: \.self) { imageurl in
-                    GeometryReader {
-                        proxy in
-                        AsyncImage(url: URL(string: imageurl)) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .modifier(ImageModifier(contentSize: CGSize(width: proxy.size.width, height: proxy.size.height)))
-                        } placeholder: {
-                            ProgressView()
+                TabView {
+                    ForEach(originalImageURL, id: \.self) { imageurl in
+                        GeometryReader {
+                            proxy in
+                            AsyncImage(url: URL(string: imageurl)) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .modifier(ImageModifier(contentSize: CGSize(width: proxy.size.width, height: proxy.size.height)))
+                            } placeholder: {
+                                ProgressView()
+                            }
                         }
                     }
-                }
+                }.tabViewStyle(PageTabViewStyle())
                 
                 ScrollView{
                     ForEach(issueThread, id: \.id) { thread in
