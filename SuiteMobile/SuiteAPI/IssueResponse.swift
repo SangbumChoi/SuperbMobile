@@ -59,7 +59,7 @@ class IssueThreadResponse : ObservableObject {
                     print("issueThread", self.issueThread)
                 } catch {
                     print("Issue")
-                }
             }
+        }
     }
 }
