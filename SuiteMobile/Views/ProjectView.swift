@@ -69,10 +69,12 @@ struct ProjectRow: View {
                             ForEach(project.label_interface.object_detection!.annotation_types, id: \.self) { annotation_type in
                                 generateAnnotationTypeIcon(annotationtype: annotation_type!)
                             }
-                        } else {
+                        } else if project.label_interface.object_tracking != nil {
                             ForEach(project.label_interface.object_tracking!.annotation_types, id: \.self) { annotation_type in
                                 generateAnnotationTypeIcon(annotationtype: annotation_type!)
                             }
+                        } else {
+                            
                         }
                     }
                 }

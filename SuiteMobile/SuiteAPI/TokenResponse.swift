@@ -23,12 +23,15 @@ enum NetworkError: Error {
 
 class TokenResponse : ObservableObject {
     
-//    @Published var tenant_id: String = "superb-kr-demo"
+//    @Published var tenant_id: String = "datalab-operation"
 //    @Published var email: String = "sbchoi@superb-ai.com"
 //    @Published var password: String = "Acs8sam0932!"
-    @Published var tenant_id: String = "pingu"
-    @Published var email: String = "tsnoh@superb-ai.com"
-    @Published var password: String = "P@ssw0rd"
+//    @Published var tenant_id: String = "pingu"
+//    @Published var email: String = "tsnoh@superb-ai.com"
+//    @Published var password: String = "P@ssw0rd"
+    @Published var tenant_id: String = ""
+    @Published var email: String = ""
+    @Published var password: String = ""
     @Published var isAuthenticated: Bool = false
     
     func login() {
@@ -39,6 +42,7 @@ class TokenResponse : ObservableObject {
             switch result {
                 case .success(let token):
                     defaults.setValue(token, forKey: "jsonwebtoken")
+                    print("jsonwebtoken", token)
                     DispatchQueue.main.async {
                         self.isAuthenticated = true
                     }
@@ -57,7 +61,7 @@ class Webservice {
     
     func login(tenant_id: String, email: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
         
-        guard let url = URL(string: "https://suite-api.dev.superb-ai.com/auth/login") else {
+        guard let url = URL(string: "https://suite-api.superb-ai.com/auth/login") else {
             completion(.failure(.custom(errorMessage: "URL is not correct")))
             return
         }

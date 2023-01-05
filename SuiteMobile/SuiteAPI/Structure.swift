@@ -20,9 +20,10 @@ struct LoginResponse: Decodable {
 
 // MARK: - DataClass
 struct DataClass: Decodable {
-    let challengeName: Double?
+    let challenge_name: Double?
     let refresh_token, access_token, id_token, last_logined_at: String?
-    let deviceInfo: Double?
+    let hmac_token: String?
+    let device_info: Double?
 }
 
 

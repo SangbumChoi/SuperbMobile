@@ -16,7 +16,7 @@ class URLResponse : ObservableObject {
 
     func fetchURL(asset_id: String, type: String) {
         
-        let baseUrl = "https://suite-api.dev.superb-ai.com/assets/\(asset_id)/read-signed-url/"
+        let baseUrl = "https://suite-api.superb-ai.com/assets/\(asset_id)/read-signed-url/"
         let token = UserDefaults.standard.string(forKey: "jsonwebtoken")
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",

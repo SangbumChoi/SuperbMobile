@@ -12,7 +12,7 @@ import Alamofire
 class ProjectListsResponse: ObservableObject {
     @Published var projectLists = [ProjectResult]()
 
-    var baseUrl = "https://suite-api.dev.superb-ai.com/projects/?page_size=100&page=1"
+    var baseUrl = "https://suite-api.superb-ai.com/projects/?page_size=100&page=1"
     
     init() {
         fetchProjectLists()
@@ -51,7 +51,7 @@ class ProjectLabelingStatusResponse: ObservableObject {
     
     func fetchProjectOverview(id: String, title: String){
         
-        let baseUrl = "https://suite-api.dev.superb-ai.com/v2/projects/\(id)/overview/"
+        let baseUrl = "https://suite-api.superb-ai.com/v2/projects/\(id)/overview/"
         let token = UserDefaults.standard.string(forKey: "jsonwebtoken")
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
@@ -107,7 +107,7 @@ class ProjectMemberResponse: ObservableObject {
     var subscription = Set<AnyCancellable>()
     
     func fetchProjectMember(id: String){
-        let baseUrl = "https://suite-api.dev.superb-ai.com/v2/projects/\(id)/users/"
+        let baseUrl = "https://suite-api.superb-ai.com/v2/projects/\(id)/users/"
 
         let token = UserDefaults.standard.string(forKey: "jsonwebtoken")
         let headers: HTTPHeaders = [
@@ -151,7 +151,7 @@ class ProjectIssueResponse : ObservableObject {
 
     func fetchIssue(project_id: String) {
         
-        let baseUrl = "https://suite-api.dev.superb-ai.com/projects/\(project_id)/labels/?group_ordering=-additional_label_type&contains_issue=true"
+        let baseUrl = "https://suite-api.superb-ai.com/projects/\(project_id)/labels/?group_ordering=-additional_label_type&contains_issue=true"
         let token = UserDefaults.standard.string(forKey: "jsonwebtoken")
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",

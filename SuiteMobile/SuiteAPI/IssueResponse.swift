@@ -16,7 +16,7 @@ class IssueResponse : ObservableObject {
 
     func fetchIssue(project_id: String) {
         
-        let baseUrl = "https://suite-api.dev.superb-ai.com/projects/\(project_id)/labels/?group_ordering=-additional_label_type&contains_issue=true"
+        let baseUrl = "https://suite-api.superb-ai.com/projects/\(project_id)/labels/?group_ordering=-additional_label_type&contains_issue=true"
         let token = UserDefaults.standard.string(forKey: "jsonwebtoken")
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ class IssueThreadResponse : ObservableObject {
     
     func fetchIssueThread(project_id: String, label_id: String) {
         
-        let baseUrl = "https://suite-api.dev.superb-ai.com/projects/\(project_id)/labels/\(label_id)/issue-threads/"
+        let baseUrl = "https://suite-api.superb-ai.com/projects/\(project_id)/labels/\(label_id)/issue-threads/"
         let token = UserDefaults.standard.string(forKey: "jsonwebtoken")
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
