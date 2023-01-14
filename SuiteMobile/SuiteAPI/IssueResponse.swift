@@ -29,7 +29,7 @@ class IssueResponse : ObservableObject {
                 do {
                     let parseData = try JSONDecoder().decode(Issue.self, from: data)
                     self.issue = parseData.results
-                    print("issue", self.issue)
+                    print("issue", self.issue.count)
                 } catch {
                     print("Issue")
                 }
@@ -56,7 +56,7 @@ class IssueThreadResponse : ObservableObject {
                 do {
                     let parseData = try JSONDecoder().decode([IssueThread].self, from: data)
                     self.issueThread = parseData
-                    print("issueThread", self.issueThread)
+                    print("issueThread", self.issueThread.count)
                 } catch {
                     print("Issue")
             }

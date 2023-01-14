@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct SuiteMobileApp: App {
+    @StateObject var authentication = Authentication()
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            if authentication.isValidated {
+                MainView()
+                    .environmentObject(authentication)
+            } else {
+                LoginView()
+                    .environmentObject(authentication)
+            }
         }
     }
 }

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
-        
+    
     @StateObject private var tokenResponse = TokenResponse()
+    @EnvironmentObject var authentication: Authentication
     
     var body: some View {
         ZStack {
@@ -28,37 +29,74 @@ struct LoginView: View {
                     }
                 }
                 
-                Form {
-                    HStack {
-                        Spacer()
-                        Image(systemName: tokenResponse.isAuthenticated ? "lock.fill": "lock.open")
-                    }
-                    TextField("Tenant_id", text: self.$tokenResponse.tenant_id)
-                    TextField("Email", text: self.$tokenResponse.email)
-                    SecureField("Password", text: self.$tokenResponse.password)
-                    
-                    HStack {
-                        Spacer()
-                        NavigationLink(destination: MainView(title: tokenResponse.tenant_id),
-                                       isActive: $tokenResponse.isAuthenticated) {
-                            Button(action : {
-                                tokenResponse.login()
-                            }) {
-                                Text("Login")
-                            }
+                VStack {
+                    VStack{
+                        TextField("Tenant_id", text: $tokenResponse.credentials.tenant_id)
+                            .disableAutocorrection(true)
+                        TextField("Email", text: $tokenResponse.credentials.email)
+                            .keyboardType(.emailAddress)
+                            .disableAutocorrection(true)
+                        SecureField("Password", text: $tokenResponse.credentials.password)
+                    }.padding()
+
+                    Button{ tokenResponse.login { success in
+                        authentication.updateValidation(success: success)
                         }
-                        Spacer()
+                    } label: {
+                        Text("Conitue")
+                            .frame(maxWidth: .infinity, maxHeight: 50)
+                            .bold()
                     }
-                }.buttonStyle(PlainButtonStyle())
+                    .disabled(tokenResponse.loginDisabled)
+                    .foregroundColor(.white)
+                    .background(Color(hex: "FF625A"))
+                    .cornerRadius(6)
+                    .padding(.leading)
+                    .padding(.trailing)
+
+//                    if authentication.biometricType() != .none {
+//                        Button {
+//                            authentication.requestBiometricUnlock { (result:Result<Credentials, Authentication.AuthenticationError>) in
+//                                switch result {
+//                                case .success(let credentials):
+//                                    tokenResponse.credentials = credentials
+//                                    tokenResponse.login { success in
+//                                        authentication.updateValidation(success: success)
+//                                    }
+//                                case .failure(let error):
+//                                    tokenResponse.error = error
+//                                }
+//                            }
+//                        } label: {
+//                            Image(systemName: authentication.biometricType() == .face ? "faceid" : "touchid")
+//                                .resizable()
+//                                .frame(width: 50, height: 50)
+//                        }
+//                    }
+                    
+                    if tokenResponse.showProgressView {
+                        ProgressView()
+                    }
+                    
+                    Spacer()
+                }
+                .background(Color(hex: "EAEAEA"))
+            }
+            .autocapitalization(.none)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .disabled(tokenResponse.showProgressView)
+            .alert(item: $tokenResponse.error) { error in
+//                if error == .credentialsNotSaved {
+//                    return Alert(title: Text("Credentials Not Saved"),
+//                                 message: Text(error.localizedDescription),
+//                                 primaryButton: .default(Text("OK"), action: {
+//                        tokenResponse.storeCredentialsNext = true
+//                    }),
+//                                 secondaryButton: .cancel())
+//                } else {
+                return Alert(title: Text("Invalid Login"), message: Text(error.localizedDescription))
+//                }
             }
         }
-        .onAppear(perform: {})
-        .embedInNavigationView()
     }
 }
-
-//struct Login_Preveiws: PreviewProvider {
-//    static var previews: some View {
-//        LoginView()
-//    }
-//}

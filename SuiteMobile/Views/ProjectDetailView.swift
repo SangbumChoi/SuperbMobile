@@ -88,7 +88,9 @@ struct LabelingStatusView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .foregroundColor(.yellow)
                                 .frame(
-                                    width: metrics.size.width * CGFloat(labelingstatus.inprogress_notsubmitted) / CGFloat(labelingstatus.inprogress_rejected + labelingstatus.inprogress_notsubmitted),
+                                    width: frameSize(width: metrics.size.width,
+                                                     numerator: CGFloat(labelingstatus.inprogress_notsubmitted),
+                                                     denominator: CGFloat(labelingstatus.inprogress_rejected + labelingstatus.inprogress_notsubmitted)),
                                     height: metrics.size.height * 0.2)
                         }
 
@@ -115,7 +117,9 @@ struct LabelingStatusView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .foregroundColor(.green)
                                 .frame(
-                                    width: metrics.size.width * CGFloat(labelingstatus.submitted_approved) / CGFloat(labelingstatus.submitted_approved + labelingstatus.submitted_pendingreview),
+                                    width: frameSize(width: metrics.size.width,
+                                                     numerator: CGFloat(labelingstatus.submitted_approved),
+                                                     denominator: CGFloat(labelingstatus.submitted_approved + labelingstatus.submitted_pendingreview)),
                                     height: metrics.size.height * 0.2)
                         }
 
@@ -142,7 +146,9 @@ struct LabelingStatusView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .foregroundColor(.gray)
                                 .frame(
-                                    width: metrics.size.width * CGFloat(labelingstatus.skipped_approved) / CGFloat(labelingstatus.skipped_approved + labelingstatus.skipped_pendingreview),
+                                    width: frameSize(width: metrics.size.width,
+                                                     numerator: CGFloat(labelingstatus.skipped_approved),
+                                                     denominator: CGFloat(labelingstatus.skipped_approved + labelingstatus.skipped_pendingreview)),
                                     height: metrics.size.height * 0.2)
                         }
 
@@ -154,6 +160,18 @@ struct LabelingStatusView: View {
                     Text("\(labelingstatus.skipped_pendingreview)")
                 }
             }
+        }
+    }
+    
+    func frameSize(width: CGFloat, numerator: CGFloat, denominator: CGFloat) -> CGFloat {
+        if denominator == 0 {
+            if numerator == 0 {
+                return 0
+            } else {
+                return width
+            }
+        } else {
+            return width * numerator / denominator
         }
     }
 }

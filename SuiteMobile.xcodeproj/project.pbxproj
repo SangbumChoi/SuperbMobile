@@ -12,7 +12,6 @@
 		E81F0B372957F9F800F33825 /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F0B362957F9F800F33825 /* ProjectDetailView.swift */; };
 		E81F0B3929581E5800F33825 /* IssueDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F0B3829581E5800F33825 /* IssueDetailView.swift */; };
 		E83117E428D0433100356A6F /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83117E328D0433100356A6F /* ProjectView.swift */; };
-		E83117EC28D04A2000356A6F /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = E83117EB28D04A2000356A6F /* SampleData.json */; };
 		E83117F028D04B7C00356A6F /* DataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83117EF28D04B7C00356A6F /* DataList.swift */; };
 		E83117F628D09E2C00356A6F /* IntegrationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83117F528D09E2C00356A6F /* IntegrationsView.swift */; };
 		E83117F928D15D5D00356A6F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E83117F828D15D5D00356A6F /* Alamofire */; };
@@ -28,6 +27,9 @@
 		E8A2498228D0078F00DAAFB0 /* SuiteMobileUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A2498128D0078F00DAAFB0 /* SuiteMobileUITestsLaunchTests.swift */; };
 		E8BC57FB294D8CAD00037E65 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BC57FA294D8CAD00037E65 /* Color.swift */; };
 		E8BC57FF294EFE2D00037E65 /* IssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BC57FE294EFE2D00037E65 /* IssueView.swift */; };
+		E8C452212972BEFD00BC9275 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C452202972BEFD00BC9275 /* Authentication.swift */; };
+		E8C452232972C45A00BC9275 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C452222972C45A00BC9275 /* KeychainStorage.swift */; };
+		E8C452262972C75900BC9275 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = E8C452252972C75900BC9275 /* SwiftKeychainWrapper */; };
 		E8D89D9A28D1C44600BC1ADF /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D89D9928D1C44600BC1ADF /* TokenResponse.swift */; };
 		E8D89D9C28D1C45500BC1ADF /* ProjectResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D89D9B28D1C45500BC1ADF /* ProjectResponse.swift */; };
 		E8D89D9E28D2BFE600BC1ADF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D89D9D28D2BFE600BC1ADF /* LoginView.swift */; };
@@ -59,7 +61,6 @@
 		E81F0B362957F9F800F33825 /* ProjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailView.swift; sourceTree = "<group>"; };
 		E81F0B3829581E5800F33825 /* IssueDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailView.swift; sourceTree = "<group>"; };
 		E83117E328D0433100356A6F /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
-		E83117EB28D04A2000356A6F /* SampleData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleData.json; sourceTree = "<group>"; };
 		E83117EF28D04B7C00356A6F /* DataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataList.swift; sourceTree = "<group>"; };
 		E83117F528D09E2C00356A6F /* IntegrationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationsView.swift; sourceTree = "<group>"; };
 		E83117FF28D16D4D00356A6F /* Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structure.swift; sourceTree = "<group>"; };
@@ -76,6 +77,9 @@
 		E8A2498128D0078F00DAAFB0 /* SuiteMobileUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuiteMobileUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E8BC57FA294D8CAD00037E65 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		E8BC57FE294EFE2D00037E65 /* IssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueView.swift; sourceTree = "<group>"; };
+		E8C4521F2969349100BC9275 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E8C452202972BEFD00BC9275 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		E8C452222972C45A00BC9275 /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		E8D89D9928D1C44600BC1ADF /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		E8D89D9B28D1C45500BC1ADF /* ProjectResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectResponse.swift; sourceTree = "<group>"; };
 		E8D89D9D28D2BFE600BC1ADF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 			files = (
 				E83117FC28D15D8000356A6F /* SwiftyJSON in Frameworks */,
 				E83117F928D15D5D00356A6F /* Alamofire in Frameworks */,
+				E8C452262972C75900BC9275 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +142,8 @@
 		E83117E828D047E600356A6F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E83117EB28D04A2000356A6F /* SampleData.json */,
+				E8C452202972BEFD00BC9275 /* Authentication.swift */,
+				E8C452222972C45A00BC9275 /* KeychainStorage.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -178,6 +184,7 @@
 		E8A2496328D0078D00DAAFB0 /* SuiteMobile */ = {
 			isa = PBXGroup;
 			children = (
+				E8C4521F2969349100BC9275 /* Info.plist */,
 				E8D89D9F28D2C4F200BC1ADF /* Extensions */,
 				E83117FE28D1655E00356A6F /* SuiteAPI */,
 				E83117E828D047E600356A6F /* Resources */,
@@ -244,6 +251,7 @@
 			packageProductDependencies = (
 				E83117F828D15D5D00356A6F /* Alamofire */,
 				E83117FB28D15D8000356A6F /* SwiftyJSON */,
+				E8C452252972C75900BC9275 /* SwiftKeychainWrapper */,
 			);
 			productName = SuiteMobile;
 			productReference = E8A2496128D0078D00DAAFB0 /* SuiteMobile.app */;
@@ -320,6 +328,7 @@
 			packageReferences = (
 				E83117F728D15D5D00356A6F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				E83117FA28D15D8000356A6F /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				E8C452242972C75900BC9275 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = E8A2496228D0078D00DAAFB0 /* Products */;
 			projectDirPath = "";
@@ -338,7 +347,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8A2496C28D0078F00DAAFB0 /* Preview Assets.xcassets in Resources */,
-				E83117EC28D04A2000356A6F /* SampleData.json in Resources */,
 				E8A2496928D0078F00DAAFB0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +375,7 @@
 				E80749DC296010CB00820C59 /* ImageModifier.swift in Sources */,
 				E8D89D9C28D1C45500BC1ADF /* ProjectResponse.swift in Sources */,
 				E83117E428D0433100356A6F /* ProjectView.swift in Sources */,
+				E8C452212972BEFD00BC9275 /* Authentication.swift in Sources */,
 				E8BC57FB294D8CAD00037E65 /* Color.swift in Sources */,
 				E83117F628D09E2C00356A6F /* IntegrationsView.swift in Sources */,
 				E88B3524295857A800535992 /* IssueResponse.swift in Sources */,
@@ -374,6 +383,7 @@
 				E8FBDDA228D40FA8003969F6 /* MemberResponse.swift in Sources */,
 				E81F0B372957F9F800F33825 /* ProjectDetailView.swift in Sources */,
 				E81F0B3929581E5800F33825 /* IssueDetailView.swift in Sources */,
+				E8C452232972C45A00BC9275 /* KeychainStorage.swift in Sources */,
 				E8D89D9A28D1C44600BC1ADF /* TokenResponse.swift in Sources */,
 				E8A2496728D0078D00DAAFB0 /* MainView.swift in Sources */,
 				E83117F028D04B7C00356A6F /* DataList.swift in Sources */,
@@ -546,19 +556,19 @@
 				DEVELOPMENT_TEAM = P5686Q66AD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = SuiteMobile/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sangbum.daniel.test1;
+				PRODUCT_BUNDLE_IDENTIFIER = superbai.suite.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -577,19 +587,19 @@
 				DEVELOPMENT_TEAM = P5686Q66AD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = SuiteMobile/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sangbum.daniel.test1;
+				PRODUCT_BUNDLE_IDENTIFIER = superbai.suite.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -731,6 +741,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		E8C452242972C75900BC9275 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -743,6 +761,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E83117FA28D15D8000356A6F /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		E8C452252972C75900BC9275 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8C452242972C75900BC9275 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

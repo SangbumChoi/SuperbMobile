@@ -17,14 +17,19 @@ struct IssueDetailView: View {
         ZStack {
             Color(hex: "EAEAEA")
                 .edgesIgnoringSafeArea(.all)
-            
+                        
             TabView {
-                ForEach(0..<originalImageURL.count, id: \.self) { index in
-                    IssueCombineView(
-                        originalImageURL: originalImageURL[index],
-                        originalImageSize: imageDimenssions(url: originalImageURL[index]),
-                        issueThread: issueThread.filter({($0.info.frameIndex == index)})
-                    )
+                if originalImageURL.count > 0 {
+                    ForEach(0..<originalImageURL.count, id: \.self) { index in
+                        IssueCombineView(
+                            originalImageURL: originalImageURL[index],
+                            originalImageSize: imageDimenssions(url: originalImageURL[index]),
+                            issueThread: issueThread.filter({($0.info.frameIndex == index)})
+                        )
+                    }
+                }
+                else {
+                    Text("\(originalImageURL.count)")
                 }
             }.tabViewStyle(PageTabViewStyle())
         }
@@ -32,7 +37,7 @@ struct IssueDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    func imageDimenssions(url: String) -> CGSize {
+    @MainActor func imageDimenssions(url: String) -> CGSize {
         if let imageSource = CGImageSourceCreateWithURL(URL(string: url)! as CFURL, nil) {
             if let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as Dictionary? {
                 let pixelWidth = imageProperties[kCGImagePropertyPixelWidth] as! Int
@@ -40,7 +45,7 @@ struct IssueDetailView: View {
                 return CGSize(width: pixelWidth, height: pixelHeight)
             }
         }
-        return CGSize()
+        return CGSize(width: 0, height: 0)
     }
 }
 

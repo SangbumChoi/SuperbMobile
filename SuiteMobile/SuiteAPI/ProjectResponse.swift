@@ -12,7 +12,7 @@ import Alamofire
 class ProjectListsResponse: ObservableObject {
     @Published var projectLists = [ProjectResult]()
 
-    var baseUrl = "https://suite-api.superb-ai.com/projects/?page_size=100&page=1"
+    var baseUrl = "https://suite-api.superb-ai.com/projects/?page_size=10000&page=1"
     
     init() {
         fetchProjectLists()
@@ -34,7 +34,7 @@ class ProjectListsResponse: ObservableObject {
                 do {
                     let parseData = try JSONDecoder().decode(Project.self, from: data)
                     self.projectLists = parseData.results
-                    print(self.projectLists)
+                    print(self.projectLists.count)
                 } catch {
                     print("List")
                 }

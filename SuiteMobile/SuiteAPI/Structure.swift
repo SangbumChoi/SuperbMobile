@@ -190,12 +190,12 @@ struct User: Hashable, Decodable {
 
 // MARK: - Issue
 struct Issue: Decodable {
-    let count: Int?
+    let count: Int
     let results: [IssueResult]
 }
 
 struct IssueResult: Decodable {
-    let id: String?
+    let id: String
     let asset: Asset
     let openIssueCount: Int?
     let thumbnail: String?

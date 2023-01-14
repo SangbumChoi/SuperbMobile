@@ -11,29 +11,35 @@ import SwiftyJSON
 
 struct MainView: View {
             
-    let title: String
-    
+    @EnvironmentObject var authentication: Authentication
     @State var selectedTab = 0
     
     var body: some View {
-        TabView(selection: $selectedTab){
-            ProjectView()
-                .tabItem{
-                    Image("dashboard")
-                    Text("Projects")
+        NavigationView {
+            TabView(selection: $selectedTab){
+                ProjectView()
+                    .tabItem{
+                        Image("dashboard")
+                        Text("Projects")
+                    }
+                IntegrationsView()
+                    .tabItem{
+                        Image("doughnut_chart")
+                        Text("Integrations")
+                    }
+                UsersView()
+                    .tabItem{
+                        Image("ulist")
+                        Text("Users")
+                    }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Log out") {
+                        authentication.updateValidation(success: false)
+                    }
                 }
-            IntegrationsView()
-                .tabItem{
-                    Image("doughnut_chart")
-                    Text("Integrations")
-                }
-            UsersView()
-                .tabItem{
-                    Image("ulist")
-                    Text("Users")
-                }
+            }
         }
-        .navigationTitle(title)
-        .navigationBarTitleDisplayMode(.inline)
     }
 }

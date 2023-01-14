@@ -41,29 +41,42 @@ struct IssueView: View {
                     Spacer()
                 } else {
                     ScrollView {
-                        VStack {
+                        Section {
                             ForEach(issue.filter({($0.asset.key?.contains(searchKey))! || searchKey.isEmpty}), id: \.id) { sample in
-                                Button {
-                                    isActive = true
-                                    issueThreadResponse.fetchIssueThread(project_id: project_id, label_id: sample.id!)
-                                    urlResponse.fetchURL(asset_id: sample.asset.id!, type: sample.asset.info.type!)
-                                    title = sample.asset.key!
-                                } label : {
-                                    IssueRow(issue: sample)
+                                NavigationLink(destination: IssueDetailView(issueThread: issueThreadResponse.issueThread,
+                                                                            originalImageURL: urlResponse.originalImageURL,
+                                                                            title: title),
+                                               isActive: $urlResponse.isActive) {
+                                    Button(action : {
+                                        isActive = true
+                                        issueThreadResponse.fetchIssueThread(project_id: project_id, label_id: sample.id)
+                                        urlResponse.response(asset_id: sample.asset.id!, type: sample.asset.info.type!)
+                                        title = sample.asset.key!
+                                    }) { IssueRow(issue: sample) }
                                 }
+                                
+                                
+//                                Button {
+//                                    isActive = true
+//                                    issueThreadResponse.fetchIssueThread(project_id: project_id, label_id: sample.id)
+//                                    urlResponse.fetchURL(asset_id: sample.asset.id!, type: sample.asset.info.type!)
+//                                    title = sample.asset.key!
+//                                } label : {
+//                                    IssueRow(issue: sample)
+//                                }
+//                                .background(
+//                                    NavigationLink(destination: IssueDetailView(issueThread: issueThreadResponse.issueThread,
+//                                                                                originalImageURL: urlResponse.originalImageURL,
+//                                                                                title: title),
+//                                                   isActive: $isActive) {EmptyView()}
+//                                )
                             }
-
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(12)
                             .background(.white)
                             .cornerRadius(12)
                         }
-                        .background(
-                            NavigationLink(destination: IssueDetailView(issueThread: issueThreadResponse.issueThread,
-                                                                        originalImageURL: urlResponse.originalImageURL,
-                                                                        title: title),
-                                           isActive: $isActive) {EmptyView()}
-                        )
+
                     }
                     .padding(.horizontal)
                 }
@@ -77,17 +90,26 @@ struct IssueRow: View {
 
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: issue.thumbnail!)) { image in
-                image.resizable()
-            } placeholder: {
-                ProgressView()
+            if issue.thumbnail == nil {
+                Image("Jimmy")
+                    .resizable()
+                    .frame(width: 48, height: 48)
+                    .cornerRadius(12)
+            } else {
+                AsyncImage(url: URL(string: issue.thumbnail!)) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 48, height: 48)
+                .cornerRadius(12)
             }
-            .frame(width: 48, height: 48)
-            .cornerRadius(12)
-            
+                        
             Text(issue.asset.key!)
                 .font(.system(size:16))
                 .foregroundColor(.black)
+            
+            Spacer()
         }
     }
 }
